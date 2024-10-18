@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SPA_4_Wumpus_Hunt" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SPA_4_Wumpus_Hunt" TARGET_NAME="SPA_4_Wumpus_Hunt" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SPA_4_Wumpus_Hunt" RUN_TARGET_NAME="SPA_4_Wumpus_Hunt">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
