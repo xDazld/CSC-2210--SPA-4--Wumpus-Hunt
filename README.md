@@ -1,6 +1,6 @@
 # Authors
 
-Patrick Rafferty & Mazen Hamid
+Patrick Rafferty & Mazen Hamid & Tyler Schreiber
 
 # URL
 
