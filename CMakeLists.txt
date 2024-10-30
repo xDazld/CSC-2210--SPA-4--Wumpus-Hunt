@@ -11,4 +11,5 @@ add_executable(SPA_4_Wumpus_Hunt main.cpp
         Attack.h
         Defense.h
         Controller.cpp
-        Player.cpp)
+        Player.cpp
+        Network.cpp)

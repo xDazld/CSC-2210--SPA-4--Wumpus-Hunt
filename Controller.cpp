@@ -11,8 +11,8 @@ using namespace std;
 
 // Constructor to initialize messages
 Controller::Controller()
-  : network(), // Initialize network
-      player() {
+  : network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@"),
+        player() {
   // Initialize player
   // Store the help text in the messages map
   messages["start"] = R"(

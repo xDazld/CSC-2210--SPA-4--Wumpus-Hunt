@@ -6,6 +6,7 @@
 #define NETWORK_H
 
 
+#include <iostream>
 #include <vector>
 #include "Attack.h"
 #include "Defense.h"
@@ -14,11 +15,18 @@ class Computer;
 
 class Network {
 private:
-    Computer* rooms[7][7]; // 2D array of pointers to Computer objects representing rooms
+    Computer* rooms[6][8]; // 2D array of pointers to Computer objects representing rooms
+    std::string layout;    // Store layout string
 
 public:
-    // Scans the network starting from a specified computer
-    void scan(Computer& current);
+    // Constructor to initialize the network
+    Network(const std::string& layout);
+
+    // Method to print the map of the network
+    void map() const;
+
+    // Overload the << operator to print the network
+    friend std::ostream& operator<<(std::ostream& os, const Network& network);
 };
 
 class Computer {
@@ -28,12 +36,22 @@ private:
     bool compromised;
 
 public:
-    Computer() : compromised(false) {}
+    Computer() = default;
 
     // Function to enter a room and check if it's compromised
     bool enterRoom();
+
+    // Set the compromised state
+    void setCompromised(bool state) { compromised = state; }
+
+    // Check if the computer is compromised
+    bool isCompromised() const { return compromised; }
+
+    // Overload the << operator for Computer to show its status
+    friend std::ostream& operator<<(std::ostream& os, const Computer& computer);
 };
 
-
+std::ostream& operator<<(std::ostream& os, const Network& network);
+std::ostream& operator<<(std::ostream& os, const Computer& computer);
 
 #endif //NETWORK_H
