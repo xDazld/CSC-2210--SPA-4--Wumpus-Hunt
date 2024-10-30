@@ -8,7 +8,7 @@
 
 
 class WumpDB {
-
+    // Attributes and functions specific to WumpDB can be added here
 };
 
 
