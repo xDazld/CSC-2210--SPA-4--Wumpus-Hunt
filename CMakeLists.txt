@@ -9,4 +9,6 @@ add_executable(SPA_4_Wumpus_Hunt main.cpp
         Player.h
         WumpDB.h
         Attack.h
-        Defense.h)
+        Defense.h
+        Controller.cpp
+        Player.cpp)

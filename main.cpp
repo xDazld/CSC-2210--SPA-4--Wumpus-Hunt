@@ -1,7 +1,7 @@
-#include <iostream>
+#include "Controller.h"
 
-int main()
-{
-    std::cout << "Hello, World!" << std::endl;
+int main() {
+    Controller controller;
+    controller.startGame(); // Start the game
     return 0;
 }
