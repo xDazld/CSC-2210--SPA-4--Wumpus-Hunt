@@ -12,7 +12,6 @@
 
 class Computer;
 
-// Define the Network class as per the UML diagram
 class Network {
 private:
     Computer* rooms[7][7]; // 2D array of pointers to Computer objects representing rooms
@@ -22,7 +21,6 @@ public:
     void scan(Computer& current);
 };
 
-// Define the Computer class
 class Computer {
 private:
     std::vector<Defense*> defenses; // Vector of pointers to Defense objects
