@@ -14,6 +14,10 @@ public:
     virtual ~Defense() = default;
 
     virtual bool defend() = 0;
+
+    [[nodiscard]] std::string get_name() const {
+        return name;
+    }
 };
 
 class Firewall : Defense {

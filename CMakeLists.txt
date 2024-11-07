@@ -12,7 +12,8 @@ add_executable(SPA_4_Wumpus_Hunt main.cpp
         Defense.h
         Controller.cpp
         Player.cpp
-        Network.cpp)
+        Network.cpp
+        Attack.cpp)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -g -O1")
