@@ -15,8 +15,19 @@ bool Backdoor::doAttack(Computer &target) {
 }
 
 bool Spoof::doAttack(Computer &target) {
-    return false;
+    Defense *dummy_firewall = new Firewall();
+    const size_t removed_count = target.get_defenses().remove(dummy_firewall);
+    delete dummy_firewall;
+    return removed_count != 0;
 }
+
+bool TrojanHorse::doAttack(Computer &target) {
+    Defense *dummy_antivirus = new Firewall();
+    const size_t removed_count = target.get_defenses().remove(dummy_antivirus);
+    delete dummy_antivirus;
+    return removed_count != 0;
+}
+
 
 bool DatabaseEncryptionKey::doAttack(Computer &target) {
     return false;

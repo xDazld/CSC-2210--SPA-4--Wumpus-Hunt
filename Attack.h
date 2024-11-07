@@ -35,6 +35,10 @@ class Spoof : public Attack {
     bool doAttack(Computer &target) override;
 };
 
+class TrojanHorse : public Attack {
+    bool doAttack(Computer &target) override;
+};
+
 class DatabaseEncryptionKey : public Attack {
     bool doAttack(Computer &target) override;
 };
