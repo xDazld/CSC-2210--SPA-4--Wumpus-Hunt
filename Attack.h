@@ -31,7 +31,7 @@ class Backdoor : public Attack {
     bool doAttack(Computer &target) override;
 };
 
-class Spoof : public Attack {
+class IPSpoof : public Attack {
     bool doAttack(Computer &target) override;
 };
 
@@ -40,6 +40,14 @@ class TrojanHorse : public Attack {
 };
 
 class DatabaseEncryptionKey : public Attack {
+    bool doAttack(Computer &target) override;
+};
+
+class XSS : public Attack {
+    bool doAttack(Computer &target) override;
+};
+
+class EmailSpoof : public Attack {
     bool doAttack(Computer &target) override;
 };
 

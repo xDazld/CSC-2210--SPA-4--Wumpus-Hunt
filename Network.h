@@ -11,6 +11,7 @@
 #include <vector>
 #include "Attack.h"
 #include "Defense.h"
+#include "service.h"
 
 class Computer;
 class Attack;
@@ -18,11 +19,11 @@ class Attack;
 class Network {
 private:
     Computer *rooms[6][8]{}; // 2D array of pointers to Computer objects representing rooms
-    std::string layout;    // Store layout string
+    std::string layout; // Store layout string
 
 public:
     // Constructor to initialize the network
-    explicit Network(std::string layout);
+    Network(std::string layout);
 
     // Method to get the computer at a specific location
     [[nodiscard]] Computer *getComputer(int row, int col) const {
@@ -38,10 +39,9 @@ public:
 class Computer {
 private:
     std::list<Defense *> defenses; // Vector of pointers to Defense objects
-    std::vector<Attack*> loot;      // Vector of pointers to Attack objects
-
+    std::vector<Attack *> loot; // Vector of pointers to Attack objects
     bool compromised{};
-    char icon;
+    std::vector<Service *> services;
 
 public:
     explicit Computer(const char icon) : icon(icon) {};
