@@ -11,11 +11,11 @@ using namespace std;
 
 // Constructor to initialize messages
 Controller::Controller()
-  : network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@"),
-        player() {
-  // Initialize player
-  // Store the help text in the messages map
-  messages["start"] = R"(
+    : network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@"),
+    player() {
+        // Initialize player
+        // Store the help text in the messages map
+        messages["start"] = R"(
 Welcome to "Hack the WumpDB" The WumpDB is in a network of computers, each with 1-4 connections.
 Move through the network to locate the WumpDB. Hazards include Antivirus, which detects unauthorized
 access and removes you from the network, and Firewalls, which block spoof attacks and clear nearby hazards.
@@ -26,7 +26,7 @@ allow you to return to the location you discovered them when used. You are const
 from the scans will indicate proximity to targets: "Database admin tool detected" (WumpDB nearby),
 "Unauthorized activity detected" (Antivirus nearby), and "Connected device unresponsive to scans" (Firewall nearby).
 )";
-  messages["help"] = R"(
+        messages["help"] = R"(
 There are 2 Defenses:
     Antivirus (Unauthorized activity detected)
     Firewall (Connected device unresponsive to scans)
@@ -37,52 +37,64 @@ Backdoors can bring you back to a previous location.
 The Firewall will take your spoof codes.
 The antivirus will kick you out of the network.
 )";
-}
+    }
 
 void Controller::startGame() {
-  cout << messages["start"] << endl;
+    cout << messages["start"] << endl;
 
-  char command;
-  bool gameRunning = true;
+    char command;
+    bool gameRunning = true;
 
-  while (gameRunning) {
-    cout << "Action: N)orth, S)outh, E)ast, W)est, C)ode, B)ackdoor, K)ey, H)elp, M)ap, Q)uit:" << endl;
-    cin >> command;
-
-    switch (command) {
-      case 'H':
-        showHelp();
-      break;
-      case 'M':
-          showNetwork();
-      break;
-      case 'Q':
-        gameRunning = false; // Exit the loop
-      cout << endl << "Thank you for playing!";
-      break;
-      default:
-        cout << endl << "Invalid command. Please try again." << endl;
-      break;
+    while (gameRunning) {
+        cout << "Action: N)orth, S)outh, E)ast, W)est, C)ode, B)ackdoor, K)ey, H)elp, M)ap, Q)uit:" << endl;
+        cin >> command;
+        
+        if (isValidCommand(command)) {
+            switch (command) {
+                case 'H':
+                    showHelp();
+                    break;
+                case 'M':
+                    showNetwork();
+                    break;
+                case 'Q':
+                    gameRunning = false; // Exit the loop
+                    cout << endl << "Thank you for playing!";
+                    break;
+                default:
+                    doTurn(command);
+                    break;
+            }
+        }
+        else {
+            cout << "Invalid command. Please try again." << endl;
+        }
     }
-  }
 }
 
-void Controller::doTurn() {
-  // Implementation for doing a turn in the game
+void Controller::doTurn(char command) {
+    cout << "doTurn" << endl;
+    // Implementation for doing a turn in the game
 }
 
 // Function to show help
 void Controller::showHelp() {
-  // Output the help text from the messages map
-  cout << messages["help"];
+    // Output the help text from the messages map
+    cout << messages["help"];
 }
 
 void Controller::showNetwork() {
-  cout << endl << network << endl;
+    cout << endl << network << endl;
 }
 
 void Controller::showActions() {
-  cout << messages["actions"];
+    cout << messages["actions"];
 }
 
+bool Controller::isValidCommand(const char command) {
+     if (COMMANDS.find(command) == string::npos) {
+         return false;
+     }
 
+    return true;
+}
