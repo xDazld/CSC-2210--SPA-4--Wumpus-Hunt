@@ -14,7 +14,7 @@ bool Backdoor::doAttack(Computer &target) {
     return true;
 }
 
-bool Spoof::doAttack(Computer &target) {
+bool IPSpoof::doAttack(Computer &target) {
     Defense *dummy_firewall = new Firewall();
     const size_t removed_count = target.get_defenses().remove(dummy_firewall);
     delete dummy_firewall;
@@ -35,4 +35,12 @@ bool DatabaseEncryptionKey::doAttack(Computer &target) {
 
 void Attack::download(Player *player) {
     this->player = player;
+}
+
+bool XSS::doAttack(Computer &target) {
+    if
+
+}
+
+bool EmailSpoof::doAttack(Computer &target) {
 }
