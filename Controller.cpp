@@ -92,9 +92,14 @@ void Controller::showActions() {
 }
 
 bool Controller::isValidCommand(const char command) {
-     if (COMMANDS.find(command) == string::npos) {
-         return false;
+    string commands = "";
+    commands.append(HELP);
+    commands.append(MOVES);
+    commands.append(ACTIONS);
+    cout << "commands: " << commands << endl;
+     if (commands.contains(command)) {
+         return true;
      }
 
-    return true;
+    return false;
 }

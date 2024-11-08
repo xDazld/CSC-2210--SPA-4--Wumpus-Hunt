@@ -17,7 +17,9 @@ private:
   std::map<std::string, std::string> messages;
   Network network;
   Player* player;
-  const string COMMANDS = "NSEWCBKHMQ";
+  const string HELP = "HMQ";
+  const string MOVES = "NSEW";
+  const string ACTIONS = "CBK";
 
 public:
   Controller(); // Constructor to initialize messages
