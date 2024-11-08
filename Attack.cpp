@@ -38,7 +38,6 @@ void Attack::download(Player *player) {
 }
 
 bool XSS::doAttack(Computer &target) {
-    if
 
 }
 
