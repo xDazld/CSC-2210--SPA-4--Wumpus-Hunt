@@ -38,9 +38,9 @@ void Attack::download(Player *player) {
 }
 
 bool XSS::doAttack(Computer &target) {
-    if
-
+    return false;
 }
 
 bool EmailSpoof::doAttack(Computer &target) {
+    return false;
 }
