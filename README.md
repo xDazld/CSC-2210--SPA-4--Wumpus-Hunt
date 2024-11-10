@@ -4,7 +4,7 @@ Patrick Rafferty & Mazen Hamid & Tyler Schreiber
 
 # URL
 
-https://github.com/xdazld/csc-2210--spa-4--wumpus-hunt
+https://github.com/xdazld/csc-2210--spa-4--wumpus-hunt.git
 
 # Help
 
