@@ -11,10 +11,10 @@ using namespace std;
 
 // Constructor to initialize messages
 Controller::Controller()
-    : network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@"),
-    player() {
-        // Initialize player
-        // Store the help text in the messages map
+    : player() {
+    network = new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@");
+    // Initialize player
+    // Store the help text in the messages map
         messages["start"] = R"(
 Welcome to "Hack the WumpDB" The WumpDB is in a network of computers, each with 1-4 connections.
 Move through the network to locate the WumpDB. Hazards include Antivirus, which detects unauthorized
@@ -84,7 +84,7 @@ void Controller::showHelp() {
 }
 
 void Controller::showNetwork() {
-    cout << endl << network << endl;
+    cout << endl << *network << endl;
 }
 
 void Controller::showActions() {
