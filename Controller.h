@@ -30,6 +30,8 @@ public:
   void showError();
   void showActions();
   bool isValidCommand(const char command);
+
+  ~Controller();
 };
 
 #endif // CONTROLLER_H

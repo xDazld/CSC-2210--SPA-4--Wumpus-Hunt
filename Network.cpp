@@ -142,3 +142,23 @@ std::ostream& operator<<(std::ostream& os, const Network& network) {
     }
     return os;
 }
+
+Network::~Network() {
+    for (auto &room: rooms) {
+        for (const auto &j: room) {
+            delete j;
+        }
+    }
+}
+
+Computer::~Computer() {
+    for (const Defense *defense: defenses) {
+        delete defense;
+    }
+    for (const Attack *attack: loot) {
+        delete attack;
+    }
+    for (const Service *service: services) {
+        delete service;
+    }
+}

@@ -33,6 +33,8 @@ public:
 
     // Overload the << operator to print the network
     friend std::ostream& operator<<(std::ostream& os, const Network& network);
+
+    ~Network();
 };
 
 class Computer {
@@ -76,6 +78,7 @@ public:
     // Overload the << operator for Computer to show its status
     friend std::ostream& operator<<(std::ostream& os, const Computer& computer);
 
+    ~Computer();
 };
 
 std::ostream& operator<<(std::ostream& os, const Network& network);

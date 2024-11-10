@@ -103,3 +103,7 @@ bool Controller::isValidCommand(const char command) {
 
     return false;
 }
+
+Controller::~Controller() {
+    delete network;
+}
