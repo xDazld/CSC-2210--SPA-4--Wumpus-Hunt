@@ -26,11 +26,10 @@ public:
     Network(std::string layout);
 
     // Method to get the computer at a specific location
-    [[nodiscard]] Computer *getComputer(int row, int col) const {
-        return rooms[row][col];
-    }
+    [[nodiscard]] Computer *getComputer(int row, int col) const { return rooms[row][col]; }
 
     // Method to scan adjacent computers for defenses
+    void scan(const Computer *computer) const;
 
     // Overload the << operator to print the network
     friend std::ostream& operator<<(std::ostream& os, const Network& network);
@@ -41,10 +40,17 @@ private:
     std::list<Defense *> defenses; // Vector of pointers to Defense objects
     std::vector<Attack *> loot; // Vector of pointers to Attack objects
     bool compromised{};
+    const char icon;
     std::vector<Service *> services;
 
 public:
     explicit Computer(const char icon) : icon(icon) {};
+
+    // Add/Set service to the computer
+    void addService(Service *service) { services.push_back(service); }
+
+    // Get services
+    [[nodiscard]] std::vector<Service *> &get_services() { return services; }
 
     // Add/Set defense to the computer
     void addDefense(Defense *defense) { defenses.push_back(defense); }
@@ -74,4 +80,5 @@ public:
 
 std::ostream& operator<<(std::ostream& os, const Network& network);
 std::ostream& operator<<(std::ostream& os, const Computer& computer);
+
 #endif //NETWORK_H
