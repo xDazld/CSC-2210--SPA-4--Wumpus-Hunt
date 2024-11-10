@@ -15,7 +15,7 @@ using namespace std;
 class Controller {
 private:
   std::map<std::string, std::string> messages;
-  Network network;
+  Network *network;
   Player* player;
   const string HELP = "HMQ";
   const string MOVES = "NSEW";
