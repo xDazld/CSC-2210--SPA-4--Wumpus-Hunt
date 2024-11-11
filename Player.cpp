@@ -41,7 +41,7 @@ bool Player::doMove(const char command) {
     }
 }
 
-void Player::aimAttack(char command, Direction direction) {
+void Player::aimAttack(char command, char direction) {
     Direction attackDirection = {};
     switch (direction) {
         case 'N':

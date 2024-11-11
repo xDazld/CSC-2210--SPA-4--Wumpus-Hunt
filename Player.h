@@ -26,7 +26,7 @@ public:
     }
     bool doMove(char command);
 
-    void aimAttack(char command, Direction direction);
+    void aimAttack(char command, char direction);
 
     template <typename T>
     void doAttack(Computer &targetComputer) const {
