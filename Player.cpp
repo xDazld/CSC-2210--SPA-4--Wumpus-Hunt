@@ -10,10 +10,11 @@ Player::Player(int startRow, int startCol, Network *network)
     std::vector<Attack *> availableAttacks;
 }
 bool Player::doMove(char command) {
-// move from the current room to a neighboring room depedning on the direction
-  return true;
+// todo move from the current room to a neighboring room depedning on the direction
+return true;
 }
 
 bool Player::doAttack(char command) {
+  //todo implement attack
   return true;
 }
