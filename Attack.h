@@ -27,27 +27,32 @@ public:
 
 class Backdoor : public Attack {
     Computer *location = nullptr;
-
+public:
     bool doAttack(Computer &target) override;
 };
 
 class IPSpoof : public Attack {
+public:
     bool doAttack(Computer &target) override;
 };
 
 class TrojanHorse : public Attack {
+public:
     bool doAttack(Computer &target) override;
 };
 
 class DatabaseEncryptionKey : public Attack {
+public:
     bool doAttack(Computer &target) override;
 };
 
 class XSS : public Attack {
+public:
     bool doAttack(Computer &target) override;
 };
 
 class EmailSpoof : public Attack {
+public:
     bool doAttack(Computer &target) override;
 };
 
