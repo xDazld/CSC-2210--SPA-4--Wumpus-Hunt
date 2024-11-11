@@ -10,10 +10,11 @@
 
 class Defense {
     std::string name;
+    std::string message;
 
 protected:
-    [[nodiscard]] explicit Defense(std::string name)
-        : name(std::move(name)) {
+    [[nodiscard]] explicit Defense(std::string name, std::string message)
+        : name(std::move(name)), message(std::move(message)) {
     }
 
 public:
@@ -32,11 +33,15 @@ public:
     friend bool operator==(const Defense &lhs, const Defense &rhs) {
         return lhs.name == rhs.name;
     }
+
+    std::string get_message() {
+        return message;
+    }
 };
 
 class Firewall : public Defense {
 public:
-    Firewall(): Defense("Firewall") {
+    Firewall(): Defense("Firewall", "The computer is not responding to scans.") {
     }
 
     bool defend() override;
@@ -44,7 +49,7 @@ public:
 
 class Antivirus : public Defense {
 public:
-    Antivirus(): Defense("Antivirus") {
+    Antivirus(): Defense("Antivirus", "The computer deleted the scanning program.") {
     }
 
     bool defend() override;

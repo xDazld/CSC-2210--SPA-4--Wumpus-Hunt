@@ -123,43 +123,67 @@ void Player::scan() const {
     std::cout << "Scanning for defenses and services in adjacent computers..." << std::endl;
     // Output all the defenses and attacks in the computers above, below, to the left, and to the right
     if (Computer *neighbor = currentRoom->getNeighbor(NORTH); neighbor != nullptr) {
-        std::cout << "Above: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
+        if (neighbor->get_defenses().empty()) {
+            std::cout << "Above: ";
+            for (const auto &defense: neighbor->get_defenses()) {
+                std::cout << defense->get_name() << ' ';
+            }
+            for (const auto &service: neighbor->get_services()) {
+                std::cout << service->get_name() << ' ';
+            }
+            std::cout << std::endl;
+        } else {
+            for (Defense *defense: neighbor->get_defenses()) {
+                std::cout << defense->get_message() << std::endl;
+            }
         }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
     }
     if (Computer *neighbor = currentRoom->getNeighbor(SOUTH); neighbor != nullptr) {
         std::cout << "Below: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
+        if (neighbor->get_defenses().empty()) {
+            for (const auto &defense: neighbor->get_defenses()) {
+                std::cout << defense->get_name() << ' ';
+            }
+            for (const auto &service: neighbor->get_services()) {
+                std::cout << service->get_name() << ' ';
+            }
+            std::cout << std::endl;
+        } else {
+            for (Defense *defense: neighbor->get_defenses()) {
+                std::cout << defense->get_message() << std::endl;
+            }
         }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
     }
     if (Computer *neighbor = currentRoom->getNeighbor(WEST); neighbor != nullptr) {
         std::cout << "Left: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
+        if (neighbor->get_defenses().empty()) {
+            for (const auto &defense: neighbor->get_defenses()) {
+                std::cout << defense->get_name() << ' ';
+            }
+            for (const auto &service: neighbor->get_services()) {
+                std::cout << service->get_name() << ' ';
+            }
+            std::cout << std::endl;
+        } else {
+            for (Defense *defense: neighbor->get_defenses()) {
+                std::cout << defense->get_message() << std::endl;
+            }
         }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
     }
     if (Computer *neighbor = currentRoom->getNeighbor(EAST); neighbor != nullptr) {
         std::cout << "Right: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
+        if (neighbor->get_defenses().empty()) {
+            for (const auto &defense: neighbor->get_defenses()) {
+                std::cout << defense->get_name() << ' ';
+            }
+            for (const auto &service: neighbor->get_services()) {
+                std::cout << service->get_name() << ' ';
+            }
+            std::cout << std::endl;
+        } else {
+            for (Defense *defense: neighbor->get_defenses()) {
+                std::cout << defense->get_message() << std::endl;
+            }
         }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
     }
 }
