@@ -15,7 +15,8 @@ class Player {
 private:
     int row, col;
     std::vector<Attack *> availableAttacks; // Attacks available to the player
-    Computer *currentRoom = nullptr;
+    Computer *currentRoom;
+    Network *network;
 
 public:
     Player(int startRow, int startCol, Network *network);
