@@ -25,7 +25,19 @@ public:
         this->currentRoom = current_room;
     }
     bool doMove(char command);
-    bool doAttack(char command);
+
+    void aimAttack(char command, Direction direction);
+
+    template <typename T>
+    void doAttack(Computer &targetComputer) const {
+        for (auto it = availableAttacks.begin(); it != availableAttacks.end(); ++it) {
+            if (auto attack = dynamic_cast<T*>(*it)) {
+                // Perform the Backdoor attack action here
+                attack->doAttack(targetComputer);
+                delete attack; // Optional: If managing memory dynamically
+            }
+        }
+    }
 };
 
 #endif // PLAYER_H

@@ -3,6 +3,7 @@
 //
 
 #include "Player.h"
+#include "Controller.h"
 #include "Network.h"
 
 Player::Player(Computer *startComputer, Network *network)
@@ -40,7 +41,38 @@ bool Player::doMove(const char command) {
     }
 }
 
-bool Player::doAttack(char command) {
-    //todo implement attack
-    return true;
+void Player::aimAttack(char command, Direction direction) {
+    Direction attackDirection = {};
+    switch (direction) {
+        case 'N':
+            attackDirection = NORTH;
+        break;
+        case 'S':
+            attackDirection = SOUTH;
+        break;
+        case 'E':
+            attackDirection = EAST;
+        break;
+        case 'W':
+            attackDirection = WEST;
+        break;
+        default:
+            std::cerr << "Invalid move direction.";
+    }
+    Computer* targetComputer = currentRoom->getNeighbor(attackDirection);
+    if (targetComputer != nullptr) {
+        switch (command) {
+            case Controller::BACKDOOR: {
+                doAttack<Backdoor>(*targetComputer);
+            }
+            case Controller::CODE: {
+                doAttack<IPSpoof>(*targetComputer);
+            }
+            case Controller::KEY: {
+                doAttack<DatabaseEncryptionKey>(*targetComputer);
+            }
+        }
+    } else {
+        std::cout << "Cannot Attack in that direction!" << std::endl;
+    }
 }
