@@ -154,7 +154,7 @@ bool Controller::isMove(const char command) {
 }
 
 bool Controller::isAttack(const char command) {
-    if (command == CODE || command == BACKDOOR || command == KEY) {
+    if (command == CODE || command == BACKDOOR || command == KEY || command == TROJAN || command == PHISH || command == XSS) {
         return true;
     }
     return false;
