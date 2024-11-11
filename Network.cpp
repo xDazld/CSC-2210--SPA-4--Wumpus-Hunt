@@ -67,6 +67,23 @@ Network::Network(std::string  layout) : layout(std::move(layout)) {
             ++index;
         }
     }
+    for (int row = 0; row < 6; row++) {
+        for (int col = 0; col < 8; col++) {
+            Computer *room = rooms[row][col];
+            if (col > 0) {
+                room->setNeighbor(WEST, rooms[row][col - 1]);
+            }
+            if (col < 7) {
+                room->setNeighbor(EAST, rooms[row][col + 1]);
+            }
+            if (row > 0) {
+                room->setNeighbor(NORTH, rooms[row - 1][col]);
+            }
+            if (row < 5) {
+                room->setNeighbor(SOUTH, rooms[row + 1][col]);
+            }
+        }
+    }
 }
 
 // Method to scan adjacent computers for defenses
