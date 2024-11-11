@@ -73,8 +73,8 @@ void Controller::startGame() {
 }
 
 void Controller::doTurn(char command) {
-    cout << "doTurn" << endl;
-    // Implementation for doing a turn in the game
+    cerr << "doTurn" << endl;
+    // Todo: Implementation for doing a turn in the game
 }
 
 // Function to show help
