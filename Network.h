@@ -101,4 +101,13 @@ std::ostream &operator<<(std::ostream &os, const Network &network);
 
 std::ostream &operator<<(std::ostream &os, const Computer &computer);
 
+/**
+ * The WumpDB class is responsible for representing the WumpDB computer.
+ */
+class WumpDB : public Computer {
+    // Attributes and functions specific to WumpDB can be added here
+public:
+    WumpDB();
+};
+
 #endif //NETWORK_H

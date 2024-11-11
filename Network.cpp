@@ -6,8 +6,6 @@
 
 #include <iostream>
 
-#include "WumpDB.h"
-
 Computer::Computer(const char icon) : icon(icon) {
     // Add services to the computer
     switch (rand() % 2) {
@@ -107,6 +105,12 @@ std::ostream &operator<<(std::ostream &os, const Network &network) {
 
 Computer *Network::getStart() const {
     return rooms[0][0];
+}
+
+WumpDB::WumpDB(): Computer('#') {
+    addService(new SQLServer());
+    addDefense(new Antivirus());
+    addDefense(new Firewall());
 }
 
 Network::~Network() {

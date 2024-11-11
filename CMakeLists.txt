@@ -7,7 +7,6 @@ add_executable(SPA_4_Wumpus_Hunt main.cpp
         Controller.h
         Network.h
         Player.h
-        WumpDB.h
         Attack.h
         Defense.h
         Controller.cpp
@@ -17,7 +16,7 @@ add_executable(SPA_4_Wumpus_Hunt main.cpp
         Defense.cpp
         service.cpp
         service.h
-        WumpDB.cpp)
+)
 
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin")
