@@ -43,13 +43,13 @@ class Computer {
 private:
     std::list<Defense *> defenses; // Vector of pointers to Defense objects
     std::vector<Attack *> loot; // Vector of pointers to Attack objects
-    bool compromised{};
+    bool compromised = false;
     const char icon;
     std::vector<Service *> services;
     std::map<Direction, Computer *> neighbors;
 
 public:
-    explicit Computer(const char icon) : icon(icon) {};
+    explicit Computer(char icon);
 
     // Add/Set service to the computer
     void addService(Service *service) { services.push_back(service); }

@@ -6,64 +6,65 @@
 
 #include <iostream>
 
-void initializeNetwork(Network *network) {}
+Computer::Computer(const char icon) : icon(icon) {
+    // Add services to the computer
+    switch (rand() % 3) {
+        case 0:
+            addService(new SQLServer());
+            break;
+        case 1:
+            addService(new HTTPServer());
+            break;
+        case 2:
+            addService(new EmailServer());
+            break;
+        default: ;
+    }
+
+    // Add attack to the computer
+    if (icon == '?') {
+        switch (rand() % 6) {
+            case 0:
+                addAttack(new Backdoor());
+                break;
+            case 1:
+                addAttack(new IPSpoof());
+                break;
+            case 2:
+                addAttack(new TrojanHorse());
+                break;
+            case 3:
+                addAttack(new DatabaseEncryptionKey());
+                break;
+            case 4:
+                addAttack(new XSS());
+                break;
+            case 5:
+                addAttack(new EmailSpoof());
+                break;
+            default: ;
+        }
+    }
+
+    // Add defense to the computer
+    if (icon == '!') {
+        addDefense(new Antivirus());
+    }
+    if (icon == '@') {
+        addDefense(new Firewall());
+    }
+}
+
+void initializeNetwork(Network *network) {
+}
 
 // Constructor to initialize the network and store layout
-Network::Network(std::string  layout) : layout(std::move(layout)) {
+Network::Network(std::string layout) : layout(std::move(layout)) {
     int index = 0;
-    for (auto & room : rooms) {
-        for (auto & j : room) {
+    for (auto &room: rooms) {
+        for (auto &j: room) {
             char const icon = this->layout[index]; // Casting to char because it's a string
             j = new Computer(icon);
-            j->setCompromised(false);
-
-            // Add services to the computer
-            switch (rand() % 3) {
-                case 0:
-                    j->addService(new SQLServer());
-                break;
-                case 1:
-                    j->addService(new HTTPServer());
-                break;
-                case 2:
-                    j->addService(new EmailServer());
-                break;
-                default: ;
-            }
-
-            // Add attack to the computer
-            switch (rand() % 6) {
-                case 0:
-                    j->addAttack(new Backdoor());
-                break;
-                case 1:
-                    j->addAttack(new IPSpoof());
-                break;
-                case 2:
-                    j->addAttack(new TrojanHorse());
-                break;
-                case 3:
-                    j->addAttack(new DatabaseEncryptionKey());
-                break;
-                case 4:
-                    j->addAttack(new XSS());
-                break;
-                case 5:
-                    j->addAttack(new EmailSpoof());
-                break;
-                default: ;
-            }
-
-            // Add defense to the computer
-            switch (rand() % 2) {
-                case 0:
-                    j->addDefense(new Firewall());
-                break;
-                case 1:
-                    j->addDefense(new Antivirus());
-                break;
-                default: ;
-            }
             ++index;
         }
     }
@@ -134,13 +135,12 @@ void Network::scan(Computer *computer) {
 }
 
 
-
 // Overload the << operator to print the network map based on layout
-std::ostream& operator<<(std::ostream& os, const Network& network) {
+std::ostream &operator<<(std::ostream &os, const Network &network) {
     os << "Network Map:" << std::endl;
 
-    for (auto & room : network.rooms) {
-        for (auto & j : room) {
+    for (auto &room: network.rooms) {
+        for (auto &j: room) {
             os << j->getIcon() << ' ';
         }
         os << std::endl;
