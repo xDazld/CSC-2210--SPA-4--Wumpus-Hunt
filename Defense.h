@@ -20,8 +20,6 @@ protected:
 public:
     virtual ~Defense() = default;
 
-    virtual bool defend() = 0;
-
     [[nodiscard]] std::string get_name() const {
         return name;
     }
@@ -43,16 +41,12 @@ class Firewall : public Defense {
 public:
     Firewall(): Defense("Firewall", "The computer is not responding to scans.") {
     }
-
-    bool defend() override;
 };
 
 class Antivirus : public Defense {
 public:
     Antivirus(): Defense("Antivirus", "The computer deleted the scanning program.") {
     }
-
-    bool defend() override;
 };
 
 #endif //DEFENSE_H

@@ -3,11 +3,3 @@
 //
 
 #include "Defense.h"
-
-bool Firewall::defend() {
-    return false;
-}
-
-bool Antivirus::defend() {
-    return false;
-}

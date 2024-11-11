@@ -32,6 +32,14 @@ Hazards:
  * Antivirus
  * Firewall
 
+Services:
+Every computer has a service running. Most are either HTTP or Email servers. The WumpDB has an SQL
+server. Your scans will tell you what ports neighbor computers have open. The services run on the
+following ports:
+ * HTTP: 80
+ * Email: 25
+ * SQL: 3306
+
 WumpDB:
 The WumpDB is well protected and is usually not moved to different computers. Attempting to connect
 to the WumpDB without having proper permissions to access it will cause it to blacklist your IP
