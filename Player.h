@@ -32,6 +32,8 @@ public:
 
     bool isAttackAvailable(char attackType);
 
+    void scan();
+
     template <typename T>
     void doAttack(Computer &targetComputer) const {
         for (auto it = availableAttacks.begin(); it != availableAttacks.end(); ++it) {

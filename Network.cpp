@@ -87,53 +87,6 @@ Network::Network(std::string layout) : layout(std::move(layout)) {
     }
 }
 
-// Method to scan adjacent computers for defenses
-void Network::scan(Computer *computer) {
-    // Check for defenses in computers above, below, to the left, and to the right
-    std::cout << "Scanning for defenses and services in adjacent computers..." << std::endl;
-    // Output all the defenses and attacks in the computers above, below, to the left, and to the right
-    if (Computer *neighbor = computer->getNeighbor(NORTH); neighbor != nullptr) {
-        std::cout << "Above: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
-        }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
-    }
-    if (Computer *neighbor = computer->getNeighbor(SOUTH); neighbor != nullptr) {
-        std::cout << "Below: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
-        }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
-    }
-    if (Computer *neighbor = computer->getNeighbor(WEST); neighbor != nullptr) {
-        std::cout << "Left: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
-        }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
-    }
-    if (Computer *neighbor = computer->getNeighbor(EAST); neighbor != nullptr) {
-        std::cout << "Right: ";
-        for (const auto &defense: neighbor->get_defenses()) {
-            std::cout << defense->get_name() << ' ';
-        }
-        for (const auto &service: neighbor->get_services()) {
-            std::cout << service->get_name() << ' ';
-        }
-        std::cout << std::endl;
-    }
-}
-
 
 // Overload the << operator to print the network map based on layout
 std::ostream &operator<<(std::ostream &os, const Network &network) {

@@ -75,6 +75,7 @@ void Controller::startGame() {
     bool gameRunning = true;
 
     while (gameRunning) {
+        player->scan();
         cout <<
                 "Action: N)orth, S)outh, E)ast, W)est, A)ttack, B)ackdoor, K)ey, H)elp, M)ap, Q)uit:"
                 << endl;
