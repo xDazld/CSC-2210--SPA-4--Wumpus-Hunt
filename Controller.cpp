@@ -54,6 +54,19 @@ the network, using a spoofing attack will allow you to remove firewalls and anti
 adjacent computer. Finally, you can find backdoors that will let you return back to the location
 you found it when used.
 
+Map Key:
+. - An empty space
++ - The Player (Only One)
+? - IP Spoof
+? - Backdoor (Only One)
+? - Encryption Key (Only One)
+? - XSS
+? - Email Spoof
+? - Trojan Horse
+@ - Firewall
+! - Antivirus
+# - WumpDB (Only One)
+
 Scanning:
 When you are one connection away from a WumpDB or hazard, the game will say:
 * WumpDB: This device has a database administration tool installed.
