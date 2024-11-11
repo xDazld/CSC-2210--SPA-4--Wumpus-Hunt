@@ -18,26 +18,51 @@ Controller::Controller()
     // Initialize player
     // Store the help text in the messages map
     messages["start"] = R"(
-Welcome to "Hack the WumpDB" The WumpDB is in a network of computers, each with 1-4 connections.
-Move through the network to locate the WumpDB. Hazards include Antivirus, which detects unauthorized
-access and removes you from the network, and Firewalls, which block spoof attacks and clear nearby hazards.
-Your goal is to reach the WumpDB without getting blacklisted. Each turn, you can move one connection or
-attack in a direction to open a path. You can find tools: the Encryption Key bypasses the WumpDB
-blacklist for access, Spoofing Code removes firewalls or antivirus on nearby computers, and Backdoors
-allow you to return to the location you discovered them when used. You are constantly scanning, messages
-from the scans will indicate proximity to targets: "Database admin tool detected" (WumpDB nearby),
-"Unauthorized activity detected" (Antivirus nearby), and "Connected device unresponsive to scans" (Firewall nearby).
+You are in a network with many computers. Each computer has 1 to 4 connections to other computers.
+Each computer has a service you can attack. Some computers are protected by an antivirus or a
+firewall. You can download programs from some computers to attack others. Good luck.
 )";
     messages["help"] = R"(
-There are 2 Defenses:
-    Antivirus (Unauthorized activity detected)
-    Firewall (Connected device unresponsive to scans)
-You cannot enter the WumpDB without a key.
-You need to find spoof codes in the network.
-Spoof codes can remove firewalls and antivirus from computers.
-Backdoors can bring you back to a previous location.
-The Firewall will take your spoof codes.
-The antivirus will kick you out of the network.
+Welcome to "Hack the WumpDB"
+
+The WumpDB resides in a network of computers. Each computer has 1 to 4 network connections leading
+to other computers. (Look at a rectangular maze to see how this works - if you don't know what a
+rectangular maze is, ask someone).
+
+Hazards:
+ * Antivirus
+ * Firewall
+
+WumpDB:
+The WumpDB is well protected and is usually not moved to different computers. Attempting to connect
+to the WumpDB without having proper permissions to access it will cause it to blacklist your IP
+address, meaning you lose.
+
+You:
+Each turn you can attack an adjacent computer to allow lateral movement to that computer or perform
+the lateral movement.
+You can move across one network connection at a time. If you successfully move to the computer with
+the WumpDB, you win. You will automatically do some scanning when you connect to a computer.
+You attack by telling the game which direction on the network you want to attack. If you manage to
+attack your local host, you will lose. However, if you connect to a computer will a firewall, all
+your spoof attacks will be removed.
+Connecting to a computer with antivirus installed will cause your attack to be found out and you
+will be removed from the network.
+When exploring network you can find three different tools to help you. An encryption key will allow
+you to decode the encryption on the WumpDB and gain access to the database without getting
+blacklisted, allowing you to win the game. You can also find source code for spoofing attacks in
+the network, using a spoofing attack will allow you to remove firewalls and antiviruses from an
+adjacent computer. Finally, you can find backdoors that will let you return back to the location
+you found it when used.
+
+Scanning:
+When you are one connection away from a WumpDB or hazard, the game will say:
+* WumpDB: This device has a database administration tool installed.
+* Antivirus: Unauthorized Activity Detected
+* Firewall: A connected device is not responding to scans.
+
+Good luck!
+
 )";
     if (DEBUG_MODE) {
         // ReSharper disable once CppDFAUnreachableCode
