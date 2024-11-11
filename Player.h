@@ -10,6 +10,7 @@
 
 class Attack;
 class Computer;
+class Network;
 
 class Player {
 private:
