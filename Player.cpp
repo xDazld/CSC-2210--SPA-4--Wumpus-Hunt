@@ -12,7 +12,7 @@ Player::Player(Computer *startComputer, Network *network)
     std::vector<Attack *> availableAttacks;
 }
 
-bool Player::doMove(const char command) {
+void Player::doMove(const char command) {
     Direction move_direction = {};
     switch (command) {
         case 'N':
@@ -35,6 +35,8 @@ bool Player::doMove(const char command) {
         std::cerr << "No connection in that direction" << std::endl;
         return false;
     } else {
+        currentRoom = newPosition;
+        std::cout << "Moved to new computer." << std::endl;
         if (newPosition->getCompromised()) {
             currentRoom = newPosition;
             std::cout << "Moved to new computer." << std::endl;
@@ -43,6 +45,7 @@ bool Player::doMove(const char command) {
         std::cerr << "Unable to move to that computer, not compromised." << std::endl;
         return false;
     }
+    addItem(currentRoom->get_loot());
 }
 
 void Player::aimAttack(const char command, const char direction) {
@@ -204,4 +207,8 @@ void Player::scan() const {
             }
         }
     }
+}
+
+void Player::addItem(std::vector<Attack *> attack) {
+    availableAttacks.insert(availableAttacks.end(), attack.begin(), attack.end());
 }
