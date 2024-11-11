@@ -98,7 +98,7 @@ void Controller::startGame() {
                     break;
             }
         } else {
-            cout << "Invalid command. Please try again." << endl;
+            cerr << "Invalid command. Please try again." << endl;
         }
     }
 }

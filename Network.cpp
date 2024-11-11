@@ -59,9 +59,9 @@ Network::Network(std::string layout) : layout(std::move(layout)) {
     int index = 0;
     for (auto &room: rooms) {
         for (auto &j: room) {
-            if (char const icon = this->layout[index]; icon != '#') {
+            if (char const icon = this->layout[index]; icon != '#' and icon != ' ') {
                 j = new Computer(icon);
-            } else {
+            } else if (icon == '#') {
                 j = new WumpDB();
             }
             ++index;
@@ -69,18 +69,19 @@ Network::Network(std::string layout) : layout(std::move(layout)) {
     }
     for (int row = 0; row < 6; row++) {
         for (int col = 0; col < 8; col++) {
-            Computer *room = rooms[row][col];
-            if (col > 0) {
-                room->setNeighbor(WEST, rooms[row][col - 1]);
-            }
-            if (col < 7) {
-                room->setNeighbor(EAST, rooms[row][col + 1]);
-            }
-            if (row > 0) {
-                room->setNeighbor(NORTH, rooms[row - 1][col]);
-            }
-            if (row < 5) {
-                room->setNeighbor(SOUTH, rooms[row + 1][col]);
+            if (Computer *room = rooms[row][col]; room != nullptr) {
+                if (col > 0) {
+                    room->setNeighbor(WEST, rooms[row][col - 1]);
+                }
+                if (col < 7) {
+                    room->setNeighbor(EAST, rooms[row][col + 1]);
+                }
+                if (row > 0) {
+                    room->setNeighbor(NORTH, rooms[row - 1][col]);
+                }
+                if (row < 5) {
+                    room->setNeighbor(SOUTH, rooms[row + 1][col]);
+                }
             }
         }
     }
@@ -93,7 +94,11 @@ std::ostream &operator<<(std::ostream &os, const Network &network) {
 
     for (auto &room: network.rooms) {
         for (auto &j: room) {
-            os << j->getIcon() << ' ';
+            char icon = ' ';
+            if (j != nullptr) {
+                icon = j->getIcon();
+            }
+            os << icon << ' ';
         }
         os << std::endl;
     }
