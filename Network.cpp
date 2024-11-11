@@ -84,7 +84,7 @@ void Network::scan(const Computer *computer) const {
     }
 
     // Check for defenses in computers above, below, to the left, and to the right
-    std::cout << "Scanning for defenses and services in adjacent computers...\n";
+    std::cout << "Scanning for defenses and services in adjacent computers..." << std::endl;
     // Output all the defenses and attacks in the computers above, below, to the left, and to the right
     if (row > 0) {
         std::cout << "Above: ";
@@ -94,7 +94,7 @@ void Network::scan(const Computer *computer) const {
         for (const auto & service : rooms[row + 1][col]->get_services()) {
             std::cout << service->get_name() << ' ';
         }
-        std::cout << '\n';
+        std::cout << std::endl;;
     }
     if (row < 5) {
         std::cout << "Below: ";
@@ -104,7 +104,7 @@ void Network::scan(const Computer *computer) const {
         for (const auto & service : rooms[row - 1][col]->get_services()) {
             std::cout << service->get_name() << ' ';
         }
-        std::cout << '\n';
+        std::cout << std::endl;
     }
     if (col > 0) {
         std::cout << "Left: ";
@@ -114,7 +114,7 @@ void Network::scan(const Computer *computer) const {
         for (const auto & service : rooms[row][col - 1]->get_services()) {
             std::cout << service->get_name() << ' ';
         }
-        std::cout << '\n';
+        std::cout << std::endl;
     }
     if (col < 7) {
         std::cout << "Right: ";
@@ -124,7 +124,7 @@ void Network::scan(const Computer *computer) const {
         for (const auto & service : rooms[row][col + 1]->get_services()) {
             std::cout << service->get_name() << ' ';
         }
-        std::cout << '\n';
+        std::cout << std::endl;
     }
 }
 
@@ -132,7 +132,7 @@ void Network::scan(const Computer *computer) const {
 
 // Overload the << operator to print the network map based on layout
 std::ostream& operator<<(std::ostream& os, const Network& network) {
-    os << "Network Map:\n";
+    os << "Network Map:" << std::endl;
 
     for (auto & room : network.rooms) {
         for (auto & j : room) {
