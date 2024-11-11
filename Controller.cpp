@@ -107,7 +107,7 @@ void Controller::doTurn(char command) {
         player->doMove(command);
 
     } else if (isAttack(command)) {
-        cout << "N)orth, S)outh, E)ast, W)est";
+        cout << "N)orth, S)outh, E)ast, W)est" << endl;
         char directionInput;
         cin >> directionInput;
 

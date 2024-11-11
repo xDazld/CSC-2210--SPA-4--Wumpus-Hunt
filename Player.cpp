@@ -57,7 +57,7 @@ void Player::aimAttack(char command, char direction) {
             attackDirection = WEST;
         break;
         default:
-            std::cerr << "Invalid move direction.";
+            std::cerr << "Invalid input.";
     }
     Computer* targetComputer = currentRoom->getNeighbor(attackDirection);
     if (targetComputer != nullptr) {
@@ -73,6 +73,6 @@ void Player::aimAttack(char command, char direction) {
             }
         }
     } else {
-        std::cout << "Cannot Attack in that direction!" << std::endl;
+        std::cout << "No connection found to attack" << std::endl;
     }
 }
