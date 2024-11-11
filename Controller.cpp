@@ -9,13 +9,15 @@
 
 using namespace std;
 
+static constexpr bool DEBUG_MODE = false;
+
 // Constructor to initialize messages
 Controller::Controller()
     : player() {
     network = new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@");
     // Initialize player
     // Store the help text in the messages map
-        messages["start"] = R"(
+    messages["start"] = R"(
 Welcome to "Hack the WumpDB" The WumpDB is in a network of computers, each with 1-4 connections.
 Move through the network to locate the WumpDB. Hazards include Antivirus, which detects unauthorized
 access and removes you from the network, and Firewalls, which block spoof attacks and clear nearby hazards.
@@ -26,7 +28,7 @@ allow you to return to the location you discovered them when used. You are const
 from the scans will indicate proximity to targets: "Database admin tool detected" (WumpDB nearby),
 "Unauthorized activity detected" (Antivirus nearby), and "Connected device unresponsive to scans" (Firewall nearby).
 )";
-        messages["help"] = R"(
+    messages["help"] = R"(
 There are 2 Defenses:
     Antivirus (Unauthorized activity detected)
     Firewall (Connected device unresponsive to scans)
@@ -37,7 +39,11 @@ Backdoors can bring you back to a previous location.
 The Firewall will take your spoof codes.
 The antivirus will kick you out of the network.
 )";
+    if (DEBUG_MODE) {
+        // ReSharper disable once CppDFAUnreachableCode
+        cerr << "WARNING: DEBUG MODE IS ON! DO NOT COMMIT IN THIS STATE" << endl;
     }
+}
 
 void Controller::startGame() {
     cout << messages["start"] << endl;
@@ -46,9 +52,11 @@ void Controller::startGame() {
     bool gameRunning = true;
 
     while (gameRunning) {
-        cout << "Action: N)orth, S)outh, E)ast, W)est, C)ode, B)ackdoor, K)ey, H)elp, M)ap, Q)uit:" << endl;
+        cout <<
+                "Action: N)orth, S)outh, E)ast, W)est, A)ttack, B)ackdoor, K)ey, H)elp, M)ap, Q)uit:"
+                << endl;
         cin >> command;
-        
+
         if (isValidCommand(command)) {
             switch (command) {
                 case 'H':
@@ -65,8 +73,7 @@ void Controller::startGame() {
                     doTurn(command);
                     break;
             }
-        }
-        else {
+        } else {
             cout << "Invalid command. Please try again." << endl;
         }
     }
@@ -75,6 +82,10 @@ void Controller::startGame() {
 void Controller::doTurn(char command) {
     cerr << "doTurn" << endl;
     // Todo: Implementation for doing a turn in the game
+    if (DEBUG_MODE) {
+        // ReSharper disable once CppDFAUnreachableCode
+        showNetwork();
+    }
 }
 
 // Function to show help
@@ -97,9 +108,9 @@ bool Controller::isValidCommand(const char command) {
     commands.append(MOVES);
     commands.append(ACTIONS);
     cout << "commands: " << commands << endl;
-     if (commands.contains(command)) {
-         return true;
-     }
+    if (commands.contains(command)) {
+        return true;
+    }
 
     return false;
 }
