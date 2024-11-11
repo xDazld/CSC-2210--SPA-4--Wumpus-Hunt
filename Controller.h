@@ -15,43 +15,46 @@ class Network;
 class Player;
 
 class Controller {
-    private:
-        std::map<std::string, std::string> messages;
-        Network* network;
-        Player* player;
+private:
+    std::map<std::string, std::string> messages;
+    Network *network;
+    Player *player;
 
-    public:
-        Controller(); // Constructor to initialize messages
-        void startGame();
+public:
+    Controller(); // Constructor to initialize messages
+    void startGame();
 
-        void doTurn(char command) const;
+    void doTurn(char command) const;
 
-        void showNetwork() const;
+    void showNetwork() const;
 
-        void showHelp();
-        void showActions();
+    void showHelp();
 
-        static bool isMove(char command);
+    void showActions();
 
-        static bool isAttack(char command);
+    static bool isMove(char command);
 
-        static bool isMenu(char command);
+    static bool isAttack(char command);
 
-        static bool isValidCommand(char command);
+    static bool isMenu(char command);
 
-        string createLayout();
-        ~Controller();
+    static bool isValidCommand(char command);
 
-        enum DIRECTIONS {
-            NORTH = 'N', SOUTH = 'S', EAST = 'E', WEST = 'W'
-        };
-        enum ATTACKS {
-            CODE = 'A', BACKDOOR = 'B', KEY = 'K'
-        };
-        enum MENU {
-            HELP = 'H', MAP = 'M', QUIT = 'Q'
-        };
+    string createLayout();
+
+    ~Controller();
+
+    enum DIRECTIONS {
+        NORTH = 'N', SOUTH = 'S', EAST = 'E', WEST = 'W'
+    };
+
+    enum ATTACKS {
+        CODE = 'A', BACKDOOR = 'B', KEY = 'K'
+    };
+
+    enum MENU {
+        HELP = 'H', MAP = 'M', QUIT = 'Q'
+    };
 };
 
 #endif // CONTROLLER_H
-

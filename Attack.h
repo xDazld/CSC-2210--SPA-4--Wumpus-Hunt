@@ -27,6 +27,7 @@ public:
 
 class Backdoor : public Attack {
     Computer *location = nullptr;
+
 public:
     bool doAttack(Computer &target) override;
 };

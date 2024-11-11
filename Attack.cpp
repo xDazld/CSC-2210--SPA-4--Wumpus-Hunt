@@ -30,7 +30,7 @@ bool TrojanHorse::doAttack(Computer &target) {
 
 
 bool DatabaseEncryptionKey::doAttack(Computer &target) {
-    for (const Service* service : target.get_services()) {
+    for (const Service *service: target.get_services()) {
         if (service->get_name() == "SQL") {
             target.setCompromised(true);
             return true;
@@ -44,7 +44,7 @@ void Attack::download(Player *player) {
 }
 
 bool XSS::doAttack(Computer &target) {
-    for (const Service* service : target.get_services()) {
+    for (const Service *service: target.get_services()) {
         if (service->get_name() == "HTTP") {
             target.setCompromised(true);
             return true;
@@ -54,7 +54,7 @@ bool XSS::doAttack(Computer &target) {
 }
 
 bool EmailSpoof::doAttack(Computer &target) {
-    for (const Service* service : target.get_services()) {
+    for (const Service *service: target.get_services()) {
         if (service->get_name() == "Mail") {
             target.setCompromised(true);
             return true;

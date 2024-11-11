@@ -62,7 +62,7 @@ When you are one connection away from a WumpDB or hazard, the game will say:
 
 Good luck!
 )";
-if (DEBUG_MODE) {
+    if (DEBUG_MODE) {
         // ReSharper disable once CppDFAUnreachableCode
         cerr << "WARNING: DEBUG MODE IS ON! DO NOT COMMIT IN THIS STATE" << endl;
     }
@@ -106,14 +106,12 @@ void Controller::startGame() {
 void Controller::doTurn(const char command) const {
     if (isMove(command)) {
         player->doMove(command);
-
     } else if (isAttack(command)) {
         cout << "N)orth, S)outh, E)ast, W)est" << endl;
         char directionInput;
         cin >> directionInput;
 
         player->aimAttack(command, directionInput);
-
     }
     if (DEBUG_MODE) {
         // ReSharper disable once CppDFAUnreachableCode

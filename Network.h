@@ -29,7 +29,7 @@ public:
     explicit Network(std::string layout);
 
     // Overload the << operator to print the network
-    friend std::ostream& operator<<(std::ostream& os, const Network& network);
+    friend std::ostream &operator<<(std::ostream &os, const Network &network);
 
     [[nodiscard]] Computer *getStart() const;
 
@@ -64,7 +64,7 @@ public:
     [[nodiscard]] std::list<Defense *> &get_defenses() { return defenses; }
 
     // Get loot
-    [[nodiscard]] std::vector<Attack *> &get_loot() { return loot;};
+    [[nodiscard]] std::vector<Attack *> &get_loot() { return loot; };
 
     // Get icon.
     [[nodiscard]] char getIcon() const { return icon; }
@@ -76,7 +76,7 @@ public:
     [[nodiscard]] bool getCompromised() const { return compromised; }
 
     // Overload the << operator for Computer to show its status
-    friend std::ostream& operator<<(std::ostream& os, const Computer& computer);
+    friend std::ostream &operator<<(std::ostream &os, const Computer &computer);
 
     void setNeighbor(const Direction direction, Computer *neighbor) {
         neighbors[direction] = neighbor;
@@ -89,7 +89,8 @@ public:
     ~Computer();
 };
 
-std::ostream& operator<<(std::ostream& os, const Network& network);
-std::ostream& operator<<(std::ostream& os, const Computer& computer);
+std::ostream &operator<<(std::ostream &os, const Network &network);
+
+std::ostream &operator<<(std::ostream &os, const Computer &computer);
 
 #endif //NETWORK_H

@@ -51,36 +51,36 @@ void Player::aimAttack(const char command, const char direction) {
         switch (direction) {
             case 'N':
                 attackDirection = NORTH;
-            break;
+                break;
             case 'S':
                 attackDirection = SOUTH;
-            break;
+                break;
             case 'E':
                 attackDirection = EAST;
-            break;
+                break;
             case 'W':
                 attackDirection = WEST;
-            break;
+                break;
             default:
                 std::cerr << "Invalid input.";
         }
         if (Computer *targetComputer = currentRoom->getNeighbor(attackDirection);
             targetComputer == nullptr) {
             std::cerr << "No connection found to attack" << std::endl;
-            } else {
-                switch (command) {
-                    case Controller::BACKDOOR: {
-                        doAttack<Backdoor>(*targetComputer);
-                    }
-                    case Controller::CODE: {
-                        doAttack<IPSpoof>(*targetComputer);
-                    }
-                    case Controller::KEY: {
-                        doAttack<DatabaseEncryptionKey>(*targetComputer);
-                    }
-                    default: ;
+        } else {
+            switch (command) {
+                case Controller::BACKDOOR: {
+                    doAttack<Backdoor>(*targetComputer);
                 }
+                case Controller::CODE: {
+                    doAttack<IPSpoof>(*targetComputer);
+                }
+                case Controller::KEY: {
+                    doAttack<DatabaseEncryptionKey>(*targetComputer);
+                }
+                default: ;
             }
+        }
     } else {
         std::cerr << "Attack not available." << std::endl;
     }
@@ -91,26 +91,26 @@ bool Player::isAttackAvailable(const char attackType) {
     switch (attackType) {
         case 'A':
             type = Controller::CODE;
-        break;
+            break;
         case 'B':
             type = Controller::BACKDOOR;
-        break;
+            break;
         case 'K':
             type = Controller::KEY;
-        break;
+            break;
         default: ;
     }
-    for (const auto& attack : availableAttacks) {
+    for (const auto &attack: availableAttacks) {
         switch (type) {
             case Controller::CODE:
-                if (dynamic_cast<IPSpoof*>(attack)) return true;
-            break;
+                if (dynamic_cast<IPSpoof *>(attack)) return true;
+                break;
             case Controller::BACKDOOR:
-                if (dynamic_cast<Backdoor*>(attack)) return true;
-            break;
+                if (dynamic_cast<Backdoor *>(attack)) return true;
+                break;
             case Controller::KEY:
-                if (dynamic_cast<DatabaseEncryptionKey*>(attack)) return true;
-            break;
+                if (dynamic_cast<DatabaseEncryptionKey *>(attack)) return true;
+                break;
         }
     }
     return false;
