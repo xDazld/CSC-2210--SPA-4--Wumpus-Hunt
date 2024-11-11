@@ -13,11 +13,12 @@ class Computer;
 
 class Player {
 private:
-    Player();
+    int row, col;
     std::vector<Attack *> availableAttacks; // Attacks available to the player
     Computer *currentRoom = nullptr;
 
 public:
+    Player(int startRow, int startCol, Network *network);
     void set_current_room(Computer *current_room) {
         this->currentRoom = current_room;
     }
