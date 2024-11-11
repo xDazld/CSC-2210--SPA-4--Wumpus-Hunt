@@ -6,16 +6,15 @@
 
 #include <iostream>
 
+#include "WumpDB.h"
+
 Computer::Computer(const char icon) : icon(icon) {
     // Add services to the computer
-    switch (rand() % 3) {
+    switch (rand() % 2) {
         case 0:
-            addService(new SQLServer());
-            break;
-        case 1:
             addService(new HTTPServer());
             break;
-        case 2:
+        case 1:
             addService(new EmailServer());
             break;
         default: ;
@@ -55,16 +54,17 @@ Computer::Computer(const char icon) : icon(icon) {
     }
 }
 
-void initializeNetwork(Network *network) {
-}
-
 // Constructor to initialize the network and store layout
 Network::Network(std::string layout) : layout(std::move(layout)) {
     int index = 0;
     for (auto &room: rooms) {
         for (auto &j: room) {
             char const icon = this->layout[index]; // Casting to char because it's a string
-            j = new Computer(icon);
+            if (icon != '#') {
+                j = new Computer(icon);
+            } else {
+                j = new WumpDB();
+            }
             ++index;
         }
     }

@@ -4,13 +4,14 @@
 
 #ifndef WUMPDB_H
 #define WUMPDB_H
+#include "Network.h"
 
 
-
-class WumpDB {
+class WumpDB : public Computer {
     // Attributes and functions specific to WumpDB can be added here
+public:
+    WumpDB();
 };
-
 
 
 #endif //WUMPDB_H
