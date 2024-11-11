@@ -32,7 +32,7 @@ public:
 
     bool isAttackAvailable(char attackType);
 
-    void scan();
+    void scan() const;
 
     template <typename T>
     void doAttack(Computer &targetComputer) const {

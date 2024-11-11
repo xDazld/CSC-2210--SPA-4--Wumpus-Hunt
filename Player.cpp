@@ -35,9 +35,13 @@ bool Player::doMove(const char command) {
         std::cerr << "No connection in that direction" << std::endl;
         return false;
     } else {
-        currentRoom = newPosition;
-        std::cout << "Moved to new computer." << std::endl;
-        return true;
+        if (newPosition->getCompromised()) {
+            currentRoom = newPosition;
+            std::cout << "Moved to new computer." << std::endl;
+            return true;
+        }
+        std::cerr << "Unable to move to that computer, not compromised." << std::endl;
+        return false;
     }
 }
 
@@ -112,7 +116,7 @@ bool Player::isAttackAvailable(char attackType) {
 
 
 // Method to scan adjacent computers for defenses
-void Player::scan() {
+void Player::scan() const {
     // Check for defenses in computers above, below, to the left, and to the right
     std::cout << "Scanning for defenses and services in adjacent computers..." << std::endl;
     // Output all the defenses and attacks in the computers above, below, to the left, and to the right
