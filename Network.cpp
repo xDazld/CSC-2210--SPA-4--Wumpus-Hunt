@@ -70,58 +70,46 @@ Network::Network(std::string  layout) : layout(std::move(layout)) {
 }
 
 // Method to scan adjacent computers for defenses
-void Network::scan(const Computer *computer) const {
-    // Get the computer's location
-    int row = 0;
-    int col = 0;
-    for (int i = 0; i < 6; ++i) {
-        for (int j = 0; j < 8; ++j) {
-            if (rooms[i][j] == computer) {
-                row = i;
-                col = j;
-            }
-        }
-    }
-
+void Network::scan(Computer *computer) {
     // Check for defenses in computers above, below, to the left, and to the right
     std::cout << "Scanning for defenses and services in adjacent computers..." << std::endl;
     // Output all the defenses and attacks in the computers above, below, to the left, and to the right
-    if (row > 0) {
+    if (Computer *neighbor = computer->getNeighbor(NORTH); neighbor != nullptr) {
         std::cout << "Above: ";
-        for (const auto & defense : rooms[row + 1][col]->get_defenses()) {
+        for (const auto &defense: neighbor->get_defenses()) {
             std::cout << defense->get_name() << ' ';
         }
-        for (const auto & service : rooms[row + 1][col]->get_services()) {
+        for (const auto &service: neighbor->get_services()) {
             std::cout << service->get_name() << ' ';
         }
-        std::cout << std::endl;;
+        std::cout << std::endl;
     }
-    if (row < 5) {
+    if (Computer *neighbor = computer->getNeighbor(SOUTH); neighbor != nullptr) {
         std::cout << "Below: ";
-        for (const auto & defense : rooms[row - 1][col]->get_defenses()) {
+        for (const auto &defense: neighbor->get_defenses()) {
             std::cout << defense->get_name() << ' ';
         }
-        for (const auto & service : rooms[row - 1][col]->get_services()) {
+        for (const auto &service: neighbor->get_services()) {
             std::cout << service->get_name() << ' ';
         }
         std::cout << std::endl;
     }
-    if (col > 0) {
+    if (Computer *neighbor = computer->getNeighbor(WEST); neighbor != nullptr) {
         std::cout << "Left: ";
-        for (const auto & defense : rooms[row][col - 1]->get_defenses()) {
+        for (const auto &defense: neighbor->get_defenses()) {
             std::cout << defense->get_name() << ' ';
         }
-        for (const auto & service : rooms[row][col - 1]->get_services()) {
+        for (const auto &service: neighbor->get_services()) {
             std::cout << service->get_name() << ' ';
         }
         std::cout << std::endl;
     }
-    if (col < 7) {
+    if (Computer *neighbor = computer->getNeighbor(EAST); neighbor != nullptr) {
         std::cout << "Right: ";
-        for (const auto & defense : rooms[row][col + 1]->get_defenses()) {
+        for (const auto &defense: neighbor->get_defenses()) {
             std::cout << defense->get_name() << ' ';
         }
-        for (const auto & service : rooms[row][col + 1]->get_services()) {
+        for (const auto &service: neighbor->get_services()) {
             std::cout << service->get_name() << ' ';
         }
         std::cout << std::endl;
