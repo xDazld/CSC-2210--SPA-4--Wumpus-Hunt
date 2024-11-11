@@ -41,7 +41,7 @@ private:
     std::list<Defense *> defenses; // Vector of pointers to Defense objects
     std::vector<Attack *> loot; // Vector of pointers to Attack objects
     bool compromised = false;
-    const char icon;
+    char icon;
     std::vector<Service *> services;
     std::map<Direction, Computer *> neighbors;
 
@@ -68,6 +68,8 @@ public:
 
     // Get icon.
     [[nodiscard]] char getIcon() const { return icon; }
+
+    void setIcon(const char icon) { this->icon = icon; }
 
     // Set the compromised state
     void setCompromised(const bool state) { compromised = state; }

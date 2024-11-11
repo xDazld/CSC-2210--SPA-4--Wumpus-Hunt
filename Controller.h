@@ -49,7 +49,7 @@ public:
     };
 
     enum ATTACKS {
-        CODE = 'A', BACKDOOR = 'B', KEY = 'K'
+        CODE = 'A', BACKDOOR = 'B', KEY = 'K', TROJAN = 'T', PHISH = 'P', XSS = 'X'
     };
 
     enum MENU {
