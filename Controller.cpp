@@ -113,7 +113,7 @@ void Controller::doTurn(char command) {
         if (isMove(direction)) {
             player->aimAttack(command, direction);
         } else {
-            cout << "Invalid Direction." << endl;
+            cerr << "Invalid Direction." << endl;
         }
     }
     if (DEBUG_MODE) {
