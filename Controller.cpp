@@ -12,7 +12,7 @@ static constexpr bool DEBUG_MODE = false;
 
 // Constructor to initialize messages
 Controller::Controller()
-    : network(new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@")), player() {
+    : network(new Network("+?...@..@!.?..?.?..  .?.?..  ?...!..@#...??.!..@")), player() {
     // Initialize player
     player = new Player(network->getStart(), network);
     // Store the help text in the messages map
