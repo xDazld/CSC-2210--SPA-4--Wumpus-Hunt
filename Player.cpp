@@ -45,7 +45,7 @@ void Player::doMove(const char command) {
     addItem(currentRoom->get_loot());
 }
 
-void Player::aimAttack(const char command, const char direction) {
+bool Player::aimAttack(const char command, const char direction) {
     if (isAttackAvailable(command)) {
         Direction attackDirection = {};
         switch (direction) {
@@ -68,6 +68,7 @@ void Player::aimAttack(const char command, const char direction) {
             targetComputer == nullptr) {
             std::cerr << "No connection found to attack" << std::endl;
         } else {
+            bool success = false;
             switch (command) {
                 case Controller::BACKDOOR: {
                     doAttack<Backdoor>(*targetComputer);
@@ -76,14 +77,24 @@ void Player::aimAttack(const char command, const char direction) {
                     doAttack<IPSpoof>(*targetComputer);
                 }
                 case Controller::KEY: {
-                    doAttack<DatabaseEncryptionKey>(*targetComputer);
+                    success = doAttack<DatabaseEncryptionKey>(*targetComputer);
                 }
-                default: ;
+                case Controller::TROJAN: {
+                    doAttack<TrojanHorse>(*targetComputer);
+                }
+                case Controller::PHISH: {
+                    doAttack<EmailSpoof>(*targetComputer);
+                }
+                case Controller::XSS: {
+                    doAttack<XSS>(*targetComputer);
+                }
+                return success;
             }
         }
     } else {
         std::cerr << "Attack not available." << std::endl;
     }
+    return false;
 }
 
 bool Player::isAttackAvailable(const char attackType) {

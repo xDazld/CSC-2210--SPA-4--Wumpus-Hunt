@@ -30,7 +30,7 @@ public:
     }
     void doMove(char command);
 
-    void aimAttack(char command, char direction);
+    bool aimAttack(char command, char direction);
 
     bool isAttackAvailable(char attackType);
 
@@ -39,12 +39,13 @@ public:
     void addItem(std::vector<Attack *> attack);
 
     template <typename T>
-    void doAttack(Computer &targetComputer) const {
+    bool doAttack(Computer &targetComputer) const {
         for (auto availableAttack: availableAttacks) {
             if (auto attack = dynamic_cast<T *>(availableAttack)) {
                 // Perform the Backdoor attack action here
-                attack->doAttack(targetComputer);
+                bool success = attack->doAttack(targetComputer);
                 delete attack; // Optional: If managing memory dynamically
+                return success;
             }
         }
     }
