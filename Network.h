@@ -28,9 +28,6 @@ public:
     // Constructor to initialize the network
     Network(std::string layout);
 
-    // Method to scan adjacent computers for defenses
-    static void scan(Computer *computer);
-
     // Overload the << operator to print the network
     friend std::ostream& operator<<(std::ostream& os, const Network& network);
 
