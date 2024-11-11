@@ -7,7 +7,9 @@
 #include <string>
 #include <utility>
 
-
+/**
+ * The Defense class is responsible for defending a computer.
+ */
 class Defense {
     std::string name;
     std::string message;
@@ -37,12 +39,18 @@ public:
     }
 };
 
+/**
+ * The Firewall class is responsible for defending against scans.
+ */
 class Firewall : public Defense {
 public:
     Firewall(): Defense("Firewall", "The computer is not responding to scans.") {
     }
 };
 
+/**
+ * The Antivirus class is responsible for defending against scans.
+ */
 class Antivirus : public Defense {
 public:
     Antivirus(): Defense("Antivirus", "The computer deleted the scanning program.") {

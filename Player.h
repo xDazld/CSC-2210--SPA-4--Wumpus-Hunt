@@ -13,6 +13,9 @@ class Attack;
 class Computer;
 class Network;
 
+/**
+ * The Player class is responsible for managing the player's actions and inventory.
+ */
 class Player {
 private:
     std::vector<Attack *> availableAttacks; // Attacks available to the player

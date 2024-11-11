@@ -19,6 +19,9 @@ class Attack;
 
 enum Direction { NORTH, SOUTH, EAST, WEST };
 
+/**
+ * The Network class is responsible for managing the network of computers.
+ */
 class Network {
 private:
     Computer *rooms[6][8]{}; // 2D array of pointers to Computer objects representing rooms
@@ -36,6 +39,9 @@ public:
     ~Network();
 };
 
+/**
+* The Computer class is responsible for managing the state and storage of computers in the network.
+ */
 class Computer {
 private:
     std::list<Defense *> defenses; // Vector of pointers to Defense objects

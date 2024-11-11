@@ -14,6 +14,9 @@ using namespace std;
 class Network;
 class Player;
 
+/**
+ * The Controller class is responsible for managing the game.
+ */
 class Controller {
 private:
     std::map<std::string, std::string> messages;
