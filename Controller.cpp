@@ -156,11 +156,9 @@ bool Controller::isMenu(char command) {
 }
 
 bool Controller::isValidCommand(const char command) {
-
     if (isAttack(command) || isMove(command) || isMenu(command)) {
         return true;
     }
-
     return false;
 }
 

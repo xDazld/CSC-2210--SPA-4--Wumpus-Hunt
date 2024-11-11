@@ -6,6 +6,8 @@
 #define PLAYER_H
 
 #include <vector>
+
+#include "Controller.h"
 #include "Network.h"
 
 class Attack;
@@ -27,6 +29,8 @@ public:
     bool doMove(char command);
 
     void aimAttack(char command, char direction);
+
+    bool isAttackAvailable(char attackType);
 
     template <typename T>
     void doAttack(Computer &targetComputer) const {

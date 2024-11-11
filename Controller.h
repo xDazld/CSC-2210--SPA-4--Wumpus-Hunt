@@ -12,6 +12,9 @@
 #include "Player.h"
 using namespace std;
 
+class Network;
+class Player;
+
 class Controller {
     private:
         std::map<std::string, std::string> messages;
@@ -37,7 +40,7 @@ class Controller {
             NORTH = 'N', SOUTH = 'S', EAST = 'E', WEST = 'W'
         };
         enum ATTACKS {
-            CODE = 'C', BACKDOOR = 'B', KEY = 'K'
+            CODE = 'A', BACKDOOR = 'B', KEY = 'K'
         };
         enum MENU {
             HELP = 'H', MAP = 'M', QUIT = 'Q'
