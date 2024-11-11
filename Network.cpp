@@ -143,6 +143,10 @@ std::ostream& operator<<(std::ostream& os, const Network& network) {
     return os;
 }
 
+Computer *Network::getStart() const {
+    return rooms[0][0];
+}
+
 Network::~Network() {
     for (auto &room: rooms) {
         for (const auto &j: room) {

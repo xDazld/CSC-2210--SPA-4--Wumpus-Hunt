@@ -5,16 +5,42 @@
 #include "Player.h"
 #include "Network.h"
 
-Player::Player(int startRow, int startCol, Network *network) 
-  : row(startRow), col(startCol), currentRoom(network->getComputer(startRow, startCol)) {
+Player::Player(Computer *startComputer, Network *network)
+    : currentRoom(startComputer),
+      network(network) {
     std::vector<Attack *> availableAttacks;
 }
-bool Player::doMove(char command) {
-// todo move from the current room to a neighboring room depedning on the direction
-return true;
+
+bool Player::doMove(const char command) {
+    Direction move_direction = {};
+    switch (command) {
+        case 'N':
+            move_direction = NORTH;
+            break;
+        case 'S':
+            move_direction = SOUTH;
+            break;
+        case 'E':
+            move_direction = EAST;
+            break;
+        case 'W':
+            move_direction = WEST;
+            break;
+        default:
+            std::cerr << "Invalid move direction.";
+    }
+    if (Computer *newPosition = currentRoom->getNeighbor(move_direction);
+        newPosition == nullptr) {
+        std::cerr << "No connection in that direction" << std::endl;
+        return false;
+    } else {
+        currentRoom = newPosition;
+        std::cout << "Moved to new computer." << std::endl;
+        return true;
+    }
 }
 
 bool Player::doAttack(char command) {
-  //todo implement attack
-  return true;
+    //todo implement attack
+    return true;
 }

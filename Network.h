@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <list>
+#include <map>
 #include <vector>
 #include "Attack.h"
 #include "Defense.h"
@@ -15,6 +16,8 @@
 
 class Computer;
 class Attack;
+
+enum Direction { NORTH, SOUTH, EAST, WEST };
 
 class Network {
 private:
@@ -25,14 +28,13 @@ public:
     // Constructor to initialize the network
     Network(std::string layout);
 
-    // Method to get the computer at a specific location
-    [[nodiscard]] Computer *getComputer(int row, int col) const { return rooms[row][col]; }
-
     // Method to scan adjacent computers for defenses
     void scan(const Computer *computer) const;
 
     // Overload the << operator to print the network
     friend std::ostream& operator<<(std::ostream& os, const Network& network);
+
+    Computer *getStart() const;
 
     ~Network();
 };
@@ -44,6 +46,7 @@ private:
     bool compromised{};
     const char icon;
     std::vector<Service *> services;
+    std::map<Direction, Computer *> neighbors;
 
 public:
     explicit Computer(const char icon) : icon(icon) {};
@@ -77,6 +80,14 @@ public:
 
     // Overload the << operator for Computer to show its status
     friend std::ostream& operator<<(std::ostream& os, const Computer& computer);
+
+    void setNeighbor(const Direction direction, Computer *neighbor) {
+        neighbors[direction] = neighbor;
+    }
+
+    Computer *getNeighbor(const Direction direction) {
+        return neighbors[direction];
+    }
 
     ~Computer();
 };

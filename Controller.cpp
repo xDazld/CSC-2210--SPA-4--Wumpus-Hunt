@@ -14,7 +14,7 @@ static constexpr bool DEBUG_MODE = false;
 Controller::Controller()
     : network(new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@")), player() {
     // Initialize player
-    player = new Player(0, 0, network);
+    player = new Player(network->getStart(), network);
     // Store the help text in the messages map
     messages["start"] = R"(
 You are in a network with many computers. Each computer has 1 to 4 connections to other computers.
