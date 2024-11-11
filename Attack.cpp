@@ -3,6 +3,9 @@
 //
 
 #include "Attack.h"
+#include "Defense.h"
+#include "service.h"
+#include "Player.h"
 
 bool Backdoor::doAttack(Computer &target) {
     if (location == nullptr) {
