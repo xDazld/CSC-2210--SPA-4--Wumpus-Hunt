@@ -33,17 +33,14 @@ void Player::doMove(const char command) {
     if (Computer *newPosition = currentRoom->getNeighbor(move_direction);
         newPosition == nullptr) {
         std::cerr << "No connection in that direction" << std::endl;
-        return false;
     } else {
         currentRoom = newPosition;
         std::cout << "Moved to new computer." << std::endl;
         if (newPosition->getCompromised()) {
             currentRoom = newPosition;
             std::cout << "Moved to new computer." << std::endl;
-            return true;
         }
         std::cerr << "Unable to move to that computer, not compromised." << std::endl;
-        return false;
     }
     addItem(currentRoom->get_loot());
 }
