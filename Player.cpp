@@ -98,6 +98,15 @@ bool Player::isAttackAvailable(const char attackType) {
         case 'K':
             type = Controller::KEY;
             break;
+        case 'T':
+            type = Controller::TROJAN;
+            break;
+        case 'P':
+            type = Controller::PHISH;
+            break;
+        case 'X':
+            type = Controller::XSS;
+            break;
         default: ;
     }
     for (const auto &attack: availableAttacks) {
@@ -110,6 +119,15 @@ bool Player::isAttackAvailable(const char attackType) {
                 break;
             case Controller::KEY:
                 if (dynamic_cast<DatabaseEncryptionKey *>(attack)) return true;
+                break;
+            case Controller::TROJAN:
+                if (dynamic_cast<TrojanHorse *>(attack)) return true;
+                break;
+            case Controller::PHISH:
+                if (dynamic_cast<EmailSpoof *>(attack)) return true;
+                break;
+            case Controller::XSS:
+                if (dynamic_cast<XSS *>(attack)) return true;
                 break;
         }
     }
