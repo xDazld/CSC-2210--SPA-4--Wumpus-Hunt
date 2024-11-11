@@ -10,7 +10,7 @@ using namespace std;
 
 // Constructor to initialize messages
 Controller::Controller()
-    : network(new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@")),
+    : network(new Network()),
     player(new Player(0, 0, network)){
     // Initialize player
     // Store the help text in the messages map

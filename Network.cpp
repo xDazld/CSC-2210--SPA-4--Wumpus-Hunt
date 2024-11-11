@@ -9,7 +9,7 @@
 void initializeNetwork(Network *network) {}
 
 // Constructor to initialize the network and store layout
-Network::Network(std::string  layout) : layout(std::move(layout)) {
+Network::Network() {
     int index = 0;
     for (auto & room : rooms) {
         for (auto & j : room) {

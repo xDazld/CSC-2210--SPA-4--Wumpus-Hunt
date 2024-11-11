@@ -23,7 +23,7 @@ private:
 
 public:
     // Constructor to initialize the network
-    Network(std::string layout);
+    Network();
 
     // Method to get the computer at a specific location
     [[nodiscard]] Computer *getComputer(int row, int col) const { return rooms[row][col]; }
