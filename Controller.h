@@ -24,7 +24,7 @@ public:
     Controller(); // Constructor to initialize messages
     void startGame();
 
-    void doTurn(char command) const;
+    bool doTurn(char command) const;
 
     void showNetwork() const;
 

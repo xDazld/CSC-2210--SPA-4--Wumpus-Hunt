@@ -107,7 +107,9 @@ void Controller::startGame() {
                     cout << endl << "Thank you for playing!";
                     break;
                 default:
-                    doTurn(command);
+                    if (doTurn(command)) {
+                        gameRunning = false;
+                    }
                     break;
             }
         } else {
@@ -116,7 +118,7 @@ void Controller::startGame() {
     }
 }
 
-void Controller::doTurn(const char command) const {
+bool Controller::doTurn(const char command) const {
     if (isMove(command)) {
         player->doMove(command);
     } else if (isAttack(command)) {
@@ -124,12 +126,17 @@ void Controller::doTurn(const char command) const {
         char directionInput;
         cin >> directionInput;
 
-        player->aimAttack(command, directionInput);
+        bool isWin = player->aimAttack(command, directionInput);
+        if (isWin) {
+            cout << "You Win!" << endl;
+        }
+        return isWin;
     }
     if (DEBUG_MODE) {
         // ReSharper disable once CppDFAUnreachableCode
         showNetwork();
     }
+    return false;
 }
 
 // Function to show help
