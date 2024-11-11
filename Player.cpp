@@ -59,8 +59,10 @@ void Player::aimAttack(char command, char direction) {
         default:
             std::cerr << "Invalid input.";
     }
-    Computer* targetComputer = currentRoom->getNeighbor(attackDirection);
-    if (targetComputer != nullptr) {
+    if (Computer *targetComputer = currentRoom->getNeighbor(attackDirection);
+        targetComputer == nullptr) {
+        std::cerr << "No connection found to attack" << std::endl;
+    } else {
         switch (command) {
             case Controller::BACKDOOR: {
                 doAttack<Backdoor>(*targetComputer);
@@ -72,7 +74,5 @@ void Player::aimAttack(char command, char direction) {
                 doAttack<DatabaseEncryptionKey>(*targetComputer);
             }
         }
-    } else {
-        std::cout << "No connection found to attack" << std::endl;
     }
 }
