@@ -5,7 +5,6 @@
 #include "Controller.h"
 #include <iostream>
 #include <map>
-#include <string>
 
 using namespace std;
 
@@ -13,8 +12,7 @@ static constexpr bool DEBUG_MODE = false;
 
 // Constructor to initialize messages
 Controller::Controller()
-    : player() {
-    network = new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@");
+    : network(new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@")), player() {
     // Initialize player
     // Store the help text in the messages map
     messages["start"] = R"(
@@ -62,9 +60,8 @@ When you are one connection away from a WumpDB or hazard, the game will say:
 * Firewall: A connected device is not responding to scans.
 
 Good luck!
-
 )";
-    if (DEBUG_MODE) {
+if (DEBUG_MODE) {
         // ReSharper disable once CppDFAUnreachableCode
         cerr << "WARNING: DEBUG MODE IS ON! DO NOT COMMIT IN THIS STATE" << endl;
     }
@@ -84,13 +81,13 @@ void Controller::startGame() {
 
         if (isValidCommand(command)) {
             switch (command) {
-                case 'H':
+                case HELP:
                     showHelp();
                     break;
-                case 'M':
+                case MAP:
                     showNetwork();
                     break;
-                case 'Q':
+                case QUIT:
                     gameRunning = false; // Exit the loop
                     cout << endl << "Thank you for playing!";
                     break;
@@ -105,8 +102,12 @@ void Controller::startGame() {
 }
 
 void Controller::doTurn(char command) {
-    cerr << "doTurn" << endl;
-    // Todo: Implementation for doing a turn in the game
+    if (isMove(command)) {
+        player->doMove(command);
+
+    } else if (isAttack(command)) {
+        player->doAttack(command);
+    }
     if (DEBUG_MODE) {
         // ReSharper disable once CppDFAUnreachableCode
         showNetwork();
@@ -127,13 +128,30 @@ void Controller::showActions() {
     cout << messages["actions"];
 }
 
+bool Controller:: isMove(char command) {
+    if (command == NORTH || command == SOUTH || command == EAST || command == WEST) {
+        return true;
+    }
+    return false;
+}
+
+bool Controller::isAttack(char command) {
+    if (command == CODE || command == BACKDOOR || command == KEY) {
+        return true;
+    }
+    return false;
+}
+
+bool Controller::isMenu(char command) {
+    if (command == HELP || command == MAP || command == QUIT) {
+        return true;
+    }
+    return false;
+}
+
 bool Controller::isValidCommand(const char command) {
-    string commands = "";
-    commands.append(HELP);
-    commands.append(MOVES);
-    commands.append(ACTIONS);
-    cout << "commands: " << commands << endl;
-    if (commands.contains(command)) {
+
+    if (isAttack(command) || isMove(command) || isMenu(command)) {
         return true;
     }
 

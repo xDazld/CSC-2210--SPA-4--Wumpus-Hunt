@@ -13,25 +13,34 @@
 using namespace std;
 
 class Controller {
-private:
-  std::map<std::string, std::string> messages;
-  Network *network;
-  Player* player;
-  const string HELP = "HMQ";
-  const string MOVES = "NSEW";
-  const string ACTIONS = "CBK";
+    private:
+        std::map<std::string, std::string> messages;
+        Network* network;
+        Player* player;
+        enum DIRECTIONS {
+            NORTH = 'N', SOUTH = 'S', EAST = 'E', WEST = 'W'
+        };
+        enum ATTACKS {
+            CODE = 'C', BACKDOOR = 'B', KEY = 'K'
+        };
+        enum MENU {
+            HELP = 'H', MAP = 'M', QUIT = 'Q'
+        };
 
-public:
-  Controller(); // Constructor to initialize messages
-  void startGame();
-  void doTurn(char command);
-  void showNetwork();
-  void showHelp();
-  void showError();
-  void showActions();
-  bool isValidCommand(const char command);
-
-  ~Controller();
+    public:
+        Controller(); // Constructor to initialize messages
+        void startGame();
+        void doTurn(char command);
+        void showNetwork();
+        void showHelp();
+        void showError();
+        void showActions();
+        bool isMove(char command);
+        bool isAttack(char command);
+        bool isMenu(char command);
+        bool isValidCommand(const char command);
+        string createLayout();
+        ~Controller();
 };
 
 #endif // CONTROLLER_H
