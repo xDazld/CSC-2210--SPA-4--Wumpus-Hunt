@@ -25,8 +25,7 @@ public:
     void set_current_room(Computer *current_room) {
         this->currentRoom = current_room;
     }
-
-    bool doMove(char command);
+    void doMove(char command);
 
     void aimAttack(char command, char direction);
 
@@ -34,7 +33,9 @@ public:
 
     void scan() const;
 
-    template<typename T>
+    void addItem(std::vector<Attack *> attack);
+
+    template <typename T>
     void doAttack(Computer &targetComputer) const {
         for (auto availableAttack: availableAttacks) {
             if (auto attack = dynamic_cast<T *>(availableAttack)) {
