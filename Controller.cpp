@@ -10,7 +10,8 @@ using namespace std;
 
 // Constructor to initialize messages
 Controller::Controller()
-    : network(new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@")), player() {
+    : network(new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@")),
+    player(new Player(0, 0, network)){
     // Initialize player
     // Store the help text in the messages map
     messages["start"] = R"(
@@ -70,13 +71,27 @@ void Controller::startGame() {
     }
 }
 
-void Controller::doTurn(char command) {
+bool Controller::doTurn(char command) {
     if (isMove(command)) {
         player->doMove(command);
-        
+
     } else if (isAttack(command)) {
-        player->doAttack(command);
-    } 
+        if (!player->hasAttackOfType<Backdoor>()) {
+            cout << "None of those attacks available" << endl;
+            return false;
+        }
+        bool attacking = true;
+        while (attacking) {
+            std::cout << "Direction N)orth, S)outh, E)ast, W)est" << std::endl;
+            char direction;
+            std::cin >> direction;
+            if (isMove(direction)) {
+                player->aimAttack(command, direction);
+                attacking = false;
+            }
+        }
+    }
+    return true;
 }
 
 // Function to show help
