@@ -7,7 +7,6 @@
 
 #include <vector>
 
-#include "Controller.h"
 #include "Network.h"
 
 class Attack;
@@ -36,8 +35,8 @@ public:
 
     template <typename T>
     void doAttack(Computer &targetComputer) const {
-        for (auto it = availableAttacks.begin(); it != availableAttacks.end(); ++it) {
-            if (auto attack = dynamic_cast<T*>(*it)) {
+        for (auto availableAttack: availableAttacks) {
+            if (auto attack = dynamic_cast<T *>(availableAttack)) {
                 // Perform the Backdoor attack action here
                 attack->doAttack(targetComputer);
                 delete attack; // Optional: If managing memory dynamically

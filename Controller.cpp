@@ -103,7 +103,7 @@ void Controller::startGame() {
     }
 }
 
-void Controller::doTurn(char command) {
+void Controller::doTurn(const char command) const {
     if (isMove(command)) {
         player->doMove(command);
 
@@ -127,7 +127,7 @@ void Controller::showHelp() {
     cout << messages["help"];
 }
 
-void Controller::showNetwork() {
+void Controller::showNetwork() const {
     cout << endl << *network << endl;
 }
 
@@ -135,21 +135,21 @@ void Controller::showActions() {
     cout << messages["actions"];
 }
 
-bool Controller:: isMove(char command) {
+bool Controller::isMove(const char command) {
     if (command == NORTH || command == SOUTH || command == EAST || command == WEST) {
         return true;
     }
     return false;
 }
 
-bool Controller::isAttack(char command) {
+bool Controller::isAttack(const char command) {
     if (command == CODE || command == BACKDOOR || command == KEY) {
         return true;
     }
     return false;
 }
 
-bool Controller::isMenu(char command) {
+bool Controller::isMenu(const char command) {
     if (command == HELP || command == MAP || command == QUIT) {
         return true;
     }

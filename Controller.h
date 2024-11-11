@@ -8,7 +8,6 @@
 #include <map>
 #include <string>
 
-#include "Network.h"
 #include "Player.h"
 using namespace std;
 
@@ -24,15 +23,22 @@ class Controller {
     public:
         Controller(); // Constructor to initialize messages
         void startGame();
-        void doTurn(char command);
-        void showNetwork();
+
+        void doTurn(char command) const;
+
+        void showNetwork() const;
+
         void showHelp();
-        void showError();
         void showActions();
-        bool isMove(char command);
-        bool isAttack(char command);
-        bool isMenu(char command);
-        bool isValidCommand(const char command);
+
+        static bool isMove(char command);
+
+        static bool isAttack(char command);
+
+        static bool isMenu(char command);
+
+        static bool isValidCommand(char command);
+
         string createLayout();
         ~Controller();
 

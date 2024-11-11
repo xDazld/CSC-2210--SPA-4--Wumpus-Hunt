@@ -26,12 +26,12 @@ private:
 
 public:
     // Constructor to initialize the network
-    Network(std::string layout);
+    explicit Network(std::string layout);
 
     // Overload the << operator to print the network
     friend std::ostream& operator<<(std::ostream& os, const Network& network);
 
-    Computer *getStart() const;
+    [[nodiscard]] Computer *getStart() const;
 
     ~Network();
 };

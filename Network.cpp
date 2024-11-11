@@ -59,8 +59,7 @@ Network::Network(std::string layout) : layout(std::move(layout)) {
     int index = 0;
     for (auto &room: rooms) {
         for (auto &j: room) {
-            char const icon = this->layout[index]; // Casting to char because it's a string
-            if (icon != '#') {
+            if (char const icon = this->layout[index]; icon != '#') {
                 j = new Computer(icon);
             } else {
                 j = new WumpDB();

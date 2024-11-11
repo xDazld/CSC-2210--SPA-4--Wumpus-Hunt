@@ -45,7 +45,7 @@ bool Player::doMove(const char command) {
     }
 }
 
-void Player::aimAttack(char command, char direction) {
+void Player::aimAttack(const char command, const char direction) {
     if (isAttackAvailable(command)) {
         Direction attackDirection = {};
         switch (direction) {
@@ -78,6 +78,7 @@ void Player::aimAttack(char command, char direction) {
                     case Controller::KEY: {
                         doAttack<DatabaseEncryptionKey>(*targetComputer);
                     }
+                    default: ;
                 }
             }
     } else {
@@ -85,7 +86,7 @@ void Player::aimAttack(char command, char direction) {
     }
 }
 
-bool Player::isAttackAvailable(char attackType) {
+bool Player::isAttackAvailable(const char attackType) {
     Controller::ATTACKS type = {};
     switch (attackType) {
         case 'A':
@@ -97,6 +98,7 @@ bool Player::isAttackAvailable(char attackType) {
         case 'K':
             type = Controller::KEY;
         break;
+        default: ;
     }
     for (const auto& attack : availableAttacks) {
         switch (type) {
