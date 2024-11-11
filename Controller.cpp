@@ -107,7 +107,14 @@ void Controller::doTurn(char command) {
         player->doMove(command);
 
     } else if (isAttack(command)) {
-        player->doAttack(command);
+        cout << "N)orth, S)outh, E)ast, W)est";
+        char direction;
+        cin >> direction;
+        if (isMove(direction)) {
+            player->aimAttack(command, direction);
+        } else {
+            cout << "Invalid Direction." << endl;
+        }
     }
     if (DEBUG_MODE) {
         // ReSharper disable once CppDFAUnreachableCode
