@@ -138,7 +138,7 @@ std::ostream& operator<<(std::ostream& os, const Network& network) {
         for (auto & j : room) {
             os << j->getIcon() << ' ';
         }
-        os << '\n';
+        os << std::endl;
     }
     return os;
 }
