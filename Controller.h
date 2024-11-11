@@ -15,7 +15,7 @@ using namespace std;
 class Controller {
     private:
         std::map<std::string, std::string> messages;
-        Network network;
+        Network* network;
         Player* player;
         enum DIRECTIONS {
             NORTH = 'N', SOUTH = 'S', EAST = 'E', WEST = 'W'
@@ -39,6 +39,8 @@ class Controller {
         bool isAttack(char command);
         bool isMenu(char command);
         bool isValidCommand(const char command);
+        string createLayout();
+        ~Controller();
 };
 
 #endif // CONTROLLER_H

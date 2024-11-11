@@ -5,13 +5,12 @@
 #include "Controller.h"
 #include <iostream>
 #include <map>
-#include <string>
 
 using namespace std;
 
 // Constructor to initialize messages
 Controller::Controller()
-    : network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@"), player() {
+    : network(new Network(".?...@..@!.?..?.?..  .?.?..  ?...!..@#..+??.!..@")), player() {
     // Initialize player
     // Store the help text in the messages map
     messages["start"] = R"(
@@ -72,7 +71,12 @@ void Controller::startGame() {
 }
 
 void Controller::doTurn(char command) {
-    
+    if (isMove(command)) {
+        player->doMove(command);
+        
+    } else if (isAttack(command)) {
+        player->doAttack(command);
+    } 
 }
 
 // Function to show help
@@ -82,7 +86,7 @@ void Controller::showHelp() {
 }
 
 void Controller::showNetwork() {
-    cout << endl << network << endl;
+    cout << endl << *network << endl;
 }
 
 void Controller::showActions() {
