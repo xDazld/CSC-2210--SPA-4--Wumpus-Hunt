@@ -17,15 +17,6 @@ class Controller {
         std::map<std::string, std::string> messages;
         Network* network;
         Player* player;
-        enum DIRECTIONS {
-            NORTH = 'N', SOUTH = 'S', EAST = 'E', WEST = 'W'
-        };
-        enum ATTACKS {
-            CODE = 'C', BACKDOOR = 'B', KEY = 'K'
-        };
-        enum MENU {
-            HELP = 'H', MAP = 'M', QUIT = 'Q'
-        };
 
     public:
         Controller(); // Constructor to initialize messages
@@ -41,6 +32,16 @@ class Controller {
         bool isValidCommand(const char command);
         string createLayout();
         ~Controller();
+
+        enum DIRECTIONS {
+            NORTH = 'N', SOUTH = 'S', EAST = 'E', WEST = 'W'
+        };
+        enum ATTACKS {
+            CODE = 'C', BACKDOOR = 'B', KEY = 'K'
+        };
+        enum MENU {
+            HELP = 'H', MAP = 'M', QUIT = 'Q'
+        };
 };
 
 #endif // CONTROLLER_H
