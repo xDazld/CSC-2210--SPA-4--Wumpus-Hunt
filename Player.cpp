@@ -132,7 +132,7 @@ bool Player::aimAttack(const char command, const char direction) {
 bool Player::isAttackAvailable(const char attackType) {
     Controller::ATTACKS type = {};
     switch (attackType) {
-        case 'A':
+        case 'I':
             type = Controller::IP_SPOOF;
             break;
         case 'B':
