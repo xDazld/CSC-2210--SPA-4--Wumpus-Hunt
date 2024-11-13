@@ -54,20 +54,21 @@ Each turn you can attack an adjacent computer to allow lateral movement to that 
 the lateral movement.
 You can move across one network connection at a time. If you successfully move to the computer with
 the WumpDB, you win. You will automatically do some scanning when you connect to a computer.
-You attack by telling the game which direction on the network you want to attack. If you manage to
-attack your local host, you will lose. However, if you connect to a computer will a firewall, all
-your spoof attacks will be removed.
+You attack by telling the game which direction on the network you want to attack.
 Connecting to a computer with antivirus installed will cause your attack to be found out and you
 will be removed from the network.
-When exploring network you can find three different tools to help you. An encryption key will allow
-you to decode the encryption on the WumpDB and gain access to the database without getting
-blacklisted, allowing you to win the game. You can also find source code for spoofing attacks in
-the network, using a spoofing attack will allow you to remove firewalls and antiviruses from an
-adjacent computer. Finally, you can find backdoors that will let you return back to the location
-you found it when used.
+When exploring network you can find three different tools to help you.
+ * A Backdoor will save a location in any Computer (except for the WumpDB) and you can use it again
+ to return to your previous location
+ * An IP Spoof will grant access to a computer with a firewall
+ * A Trojan Horse attack will disable the antivirus on a computer
+ * An encryption key will allow you to decode the encryption on the WumpDB and gain access to the
+ database without getting blacklisted, allowing you to win the game.
+ * A XSS attack will grant access to a computer hosting a HTTP server (port 80)
+ * An Email spoof will grant access to a computer hosting an email server (port 25)
 
 Map Key:
-. - An empty space
+. - An undefended device
 + - The Player (Only One)
 ? - IP Spoof
 ? - Backdoor
