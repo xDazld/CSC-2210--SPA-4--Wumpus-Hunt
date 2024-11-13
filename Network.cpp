@@ -81,6 +81,9 @@ Network::Network(std::string layout) : layout(std::move(layout)) {
                 if (row < 5) {
                     room->setNeighbor(SOUTH, rooms[row + 1][col]);
                 }
+                if (room->getIcon()=='.') {
+                    room->setCompromised(true);
+                }
             }
         }
     }

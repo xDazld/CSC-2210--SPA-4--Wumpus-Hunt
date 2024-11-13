@@ -17,7 +17,7 @@ Player::Player(Computer *startComputer, Network *network)
     }
 }
 
-void Player::doMove(const char command) {
+bool Player::doMove(const char command) {
     Direction move_direction = {};
     switch (command) {
         case 'N':
@@ -39,17 +39,21 @@ void Player::doMove(const char command) {
         newPosition == nullptr) {
         std::cerr << "No connection in that direction" << std::endl;
     } else {
-        if (newPosition->getCompromised()) {
+        if (newPosition->getCompromised() && newPosition->getIcon()!='!') {
             currentRoom->setIcon(currentRoomIcon);
             currentRoom = newPosition;
             currentRoomIcon = currentRoom->getIcon();
             currentRoom->setIcon('+');
             addItem(currentRoom->get_loot());
             std::cout << "Moved to new computer." << std::endl;
+        } else if (newPosition->getIcon()=='!') {
+            bool loseGame = true;
+            return loseGame;
         } else {
             std::cerr << "Unable to move to that computer, not compromised." << std::endl;
         }
     }
+    return false;
 }
 
 void Player::addItem(vector<Attack *> loot) {

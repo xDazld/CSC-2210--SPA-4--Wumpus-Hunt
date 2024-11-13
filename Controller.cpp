@@ -132,8 +132,13 @@ void Controller::startGame() {
 }
 
 bool Controller::doTurn(const char command) const {
+    bool isLoss = false;
     if (isMove(command)) {
-        player->doMove(command);
+        isLoss = player->doMove(command);
+        if (isLoss) {
+            cout << "You were removed from the network by an antivirus!" << endl;
+        }
+        return isLoss;
     } else if (command == ATTACK) {
         cout << "N)orth, S)outh, E)ast, W)est" << endl;
         char directionInput;
@@ -151,7 +156,7 @@ bool Controller::doTurn(const char command) const {
         attackCommand = toupper(attackCommand);
         const bool isWin = player->aimAttack(attackCommand, directionInput);
         if (isWin) {
-            cout << "You Win!" << endl;
+            cout << "You hacked th WumpDB!" << endl;
         }
         return isWin;
     }

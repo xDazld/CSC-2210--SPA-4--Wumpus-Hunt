@@ -30,7 +30,7 @@ public:
     void set_current_room(Computer *current_room) {
         this->currentRoom = current_room;
     }
-    void doMove(char command);
+    bool doMove(char command);
 
     void addItem(std::vector<Attack *> loot);
 
