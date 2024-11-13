@@ -293,6 +293,7 @@ bool Player::doAttack(Computer &targetComputer) {
             return success;
         }
     }
+    return false;
 }
 
 void Player::set_current_room(Computer *current_room) {
