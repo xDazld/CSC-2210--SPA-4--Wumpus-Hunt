@@ -27,7 +27,7 @@ public:
     Controller(); // Constructor to initialize messages
     void startGame();
 
-    bool doTurn(char command) const;
+    [[nodiscard]] bool doTurn(char command) const;
 
     void showNetwork() const;
 
@@ -43,8 +43,6 @@ public:
 
     static bool isValidCommand(char command);
 
-    string createLayout();
-
     ~Controller();
 
     enum DIRECTIONS {
@@ -52,11 +50,11 @@ public:
     };
 
     enum ATTACKS {
-        CODE = 'A', BACKDOOR = 'B', KEY = 'K', TROJAN = 'T', PHISH = 'P', XSS = 'X'
+        BACKDOOR = 'B', IP_SPOOF = 'I',TROJAN = 'T', KEY = 'K' , XSS = 'X', EMAIL_SPOOF = 'E'
     };
 
     enum MENU {
-        HELP = 'H', MAP = 'M', QUIT = 'Q'
+        HELP = 'H', MAP = 'M', QUIT = 'Q', ATTACK = 'A'
     };
 };
 

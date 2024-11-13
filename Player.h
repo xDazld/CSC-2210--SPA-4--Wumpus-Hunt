@@ -40,16 +40,23 @@ public:
 
     template <typename T>
     bool doAttack(Computer &targetComputer) const {
-        for (auto availableAttack: availableAttacks) {
-            if (auto attack = dynamic_cast<T *>(availableAttack)) {
+        Attack *attack = new T();
+        for (const auto availableAttack: availableAttacks) {
+            if (availableAttack->get_name() == attack->get_name()) {
                 // Perform the Backdoor attack action here
-                bool success = attack->doAttack(targetComputer);
+                const bool success = attack->doAttack(targetComputer);
                 delete attack; // Optional: If managing memory dynamically
+                if (success) {
+                    targetComputer.setCompromised(true);
+                    targetComputer.setIcon('Z');
+                }
                 return success;
             }
         }
         return false;
     }
+
+    ~Player();
 };
 
 #endif // PLAYER_H

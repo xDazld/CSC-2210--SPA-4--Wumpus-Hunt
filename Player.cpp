@@ -9,7 +9,12 @@
 Player::Player(Computer *startComputer, Network *network)
     : currentRoom(startComputer),
       network(network) {
-    std::vector<Attack *> availableAttacks;
+    for (int i = 0; i < 5; i++) {
+        availableAttacks.push_back(new EmailSpoof());
+    }
+    for (int i = 0; i < 5; i++) {
+        availableAttacks.push_back(new XSS());
+    }
 }
 
 void Player::doMove(const char command) {
@@ -34,11 +39,13 @@ void Player::doMove(const char command) {
         newPosition == nullptr) {
         std::cerr << "No connection in that direction" << std::endl;
     } else {
+
         if (newPosition->getCompromised()) {
             currentRoom = newPosition;
             std::cout << "Moved to new computer." << std::endl;
+        } else {
+            std::cerr << "Unable to move to that computer, not compromised." << std::endl;
         }
-        std::cerr << "Unable to move to that computer, not compromised." << std::endl;
     }
     addItem(currentRoom->get_loot());
 }
@@ -68,25 +75,39 @@ bool Player::aimAttack(const char command, const char direction) {
         } else {
             bool success = false;
             switch (command) {
-                case Controller::BACKDOOR: {
-                    doAttack<Backdoor>(*targetComputer);
-                }
-                case Controller::CODE: {
-                    doAttack<IPSpoof>(*targetComputer);
-                }
+                case Controller::BACKDOOR:
+                    success = doAttack<Backdoor>(*targetComputer);
+                    break;
+                case Controller::IP_SPOOF:
+                    success = doAttack<IPSpoof>(*targetComputer);
+                    break;
+
                 case Controller::KEY: {
                     success = doAttack<DatabaseEncryptionKey>(*targetComputer);
+                    if (success) {
+                        return true;
+                    }
                 }
-                case Controller::TROJAN: {
-                    doAttack<TrojanHorse>(*targetComputer);
-                }
-                case Controller::PHISH: {
-                    doAttack<EmailSpoof>(*targetComputer);
-                }
-                case Controller::XSS: {
-                    doAttack<XSS>(*targetComputer);
-                }
-                return success;
+                case Controller::TROJAN:
+                    success = doAttack<TrojanHorse>(*targetComputer);
+                    break;
+
+                case Controller::EMAIL_SPOOF:
+                    success = doAttack<EmailSpoof>(*targetComputer);
+                    break;
+
+                case Controller::XSS:
+                    success = doAttack<XSS>(*targetComputer);
+                    break;
+
+                default: {
+                    cerr << "Invalid attack type." << endl;
+                };
+            }
+            if (success) {
+                cout << "Target compromised." << endl;
+            } else {
+                cout << "Attack failed." << endl;
             }
         }
     } else {
@@ -99,7 +120,7 @@ bool Player::isAttackAvailable(const char attackType) {
     Controller::ATTACKS type = {};
     switch (attackType) {
         case 'A':
-            type = Controller::CODE;
+            type = Controller::IP_SPOOF;
             break;
         case 'B':
             type = Controller::BACKDOOR;
@@ -110,17 +131,18 @@ bool Player::isAttackAvailable(const char attackType) {
         case 'T':
             type = Controller::TROJAN;
             break;
-        case 'P':
-            type = Controller::PHISH;
+        case 'E':
+            type = Controller::EMAIL_SPOOF;
             break;
         case 'X':
             type = Controller::XSS;
             break;
-        default: ;
+        default:
+            cerr << "Invalid attack" << endl;
     }
     for (const auto &attack: availableAttacks) {
         switch (type) {
-            case Controller::CODE:
+            case Controller::IP_SPOOF:
                 if (dynamic_cast<IPSpoof *>(attack)) return true;
                 break;
             case Controller::BACKDOOR:
@@ -132,7 +154,7 @@ bool Player::isAttackAvailable(const char attackType) {
             case Controller::TROJAN:
                 if (dynamic_cast<TrojanHorse *>(attack)) return true;
                 break;
-            case Controller::PHISH:
+            case Controller::EMAIL_SPOOF:
                 if (dynamic_cast<EmailSpoof *>(attack)) return true;
                 break;
             case Controller::XSS:
@@ -217,4 +239,10 @@ void Player::scan() const {
 
 void Player::addItem(std::vector<Attack *> attack) {
     availableAttacks.insert(availableAttacks.end(), attack.begin(), attack.end());
+}
+
+Player::~Player() {
+    for (const Attack *attack: availableAttacks) {
+        delete attack;
+    }
 }

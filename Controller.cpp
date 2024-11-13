@@ -98,7 +98,7 @@ void Controller::startGame() {
     while (gameRunning) {
         player->scan();
         cout <<
-                "Action: N)orth, S)outh, E)ast, W)est, A)ttack, B)ackdoor, K)ey, T)rojan, P)hish, X)ss, H)elp, M)ap, Q)uit:"
+                "Action: N)orth, S)outh, E)ast, W)est, A)ttack, B)ackdoor, H)elp, M)ap, Q)uit:"
                 << endl;
         cin >> command;
 
@@ -129,12 +129,14 @@ void Controller::startGame() {
 bool Controller::doTurn(const char command) const {
     if (isMove(command)) {
         player->doMove(command);
-    } else if (isAttack(command)) {
+    } else if (command == ATTACK) {
         cout << "N)orth, S)outh, E)ast, W)est" << endl;
         char directionInput;
         cin >> directionInput;
-
-        bool isWin = player->aimAttack(command, directionInput);
+        cout << "B)ackdoor, I)P Spoof, T)rojan, K)ey, X)SS, E)mail Spoof" << endl;
+        char attackCommand;
+        cin >> attackCommand;
+        const bool isWin = player->aimAttack(attackCommand, directionInput);
         if (isWin) {
             cout << "You Win!" << endl;
         }
@@ -169,21 +171,22 @@ bool Controller::isMove(const char command) {
 }
 
 bool Controller::isAttack(const char command) {
-    if (command == CODE || command == BACKDOOR || command == KEY || command == TROJAN || command == PHISH || command == XSS) {
+    if (command == IP_SPOOF || command == BACKDOOR || command == KEY || command == TROJAN || command
+        == EMAIL_SPOOF || command == XSS) {
         return true;
     }
     return false;
 }
 
 bool Controller::isMenu(const char command) {
-    if (command == HELP || command == MAP || command == QUIT) {
+    if (command == HELP || command == MAP || command == QUIT || command == ATTACK) {
         return true;
     }
     return false;
 }
 
 bool Controller::isValidCommand(const char command) {
-    if (isAttack(command) || isMove(command) || isMenu(command)) {
+    if (isMove(command) || isMenu(command)) {
         return true;
     }
     return false;
