@@ -276,6 +276,13 @@ bool Player::doAttack(Computer &targetComputer) {
     return false;
 }
 
+void Player::set_current_room(Computer *current_room) {
+    currentRoom->setIcon(currentRoomIcon);
+    this->currentRoom = current_room;
+    currentRoomIcon = currentRoom->getIcon();
+    currentRoom->setIcon('+');
+}
+
 Player::~Player() {
     for (const Attack *attack: availableAttacks) {
         delete attack;
