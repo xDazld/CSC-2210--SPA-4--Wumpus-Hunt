@@ -4,6 +4,8 @@
 
 #include "Attack.h"
 
+#include <algorithm>
+
 bool Backdoor::doAttack(Computer &target) {
     if (location == nullptr) {
         location = &target;
@@ -15,10 +17,19 @@ bool Backdoor::doAttack(Computer &target) {
 }
 
 bool IPSpoof::doAttack(Computer &target) {
-    Defense *dummy_firewall = new Firewall();
-    const size_t removed_count = target.get_defenses().remove(dummy_firewall);
-    delete dummy_firewall;
-    return removed_count != 0;
+    auto &defenses = target.get_defenses();  // Get reference to defenses vector
+
+    // Find the firewall defense in the vector
+    auto it = std::find_if(defenses.begin(), defenses.end(),
+        [](Defense* defense) { return dynamic_cast<Firewall*>(defense) != nullptr; });
+
+    if (it != defenses.end()) {
+        // Found a firewall defense, now erase it
+        delete *it;  // Free memory of the removed defense
+        defenses.erase(it);  // Remove the pointer from the vector
+        return true;  // Successfully removed
+    }
+    return false;  // No firewall found
 }
 
 bool TrojanHorse::doAttack(Computer &target) {
