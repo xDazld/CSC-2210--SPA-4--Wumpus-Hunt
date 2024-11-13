@@ -43,6 +43,8 @@ public:
     template <typename T>
     bool doAttack(Computer &targetComputer) const;
 
+    std::vector<Attack *> getAvailableAttacks() const { return availableAttacks; }
+
     ~Player();
 };
 

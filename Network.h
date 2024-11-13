@@ -70,7 +70,10 @@ public:
     [[nodiscard]] std::list<Defense *> &get_defenses() { return defenses; }
 
     // Get loot
-    [[nodiscard]] std::vector<Attack *> &get_loot() { return loot; };
+    [[nodiscard]] std::vector<Attack *> &get_loot() { return loot; }
+
+    template<class T>
+    size_t countTypes(const std::vector<Attack *> &attacks);;
 
     // Get icon.
     [[nodiscard]] char getIcon() const { return icon; }

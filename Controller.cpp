@@ -8,6 +8,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <vector>
+#include <typeinfo>
 
 using namespace std;
 
@@ -138,7 +139,13 @@ bool Controller::doTurn(const char command) const {
         char directionInput;
         cin >> directionInput;
         directionInput = toupper(directionInput);
-        cout << "B)ackdoor, I)P Spoof, T)rojan, K)ey, X)SS, E)mail Spoof" << endl;
+        vector<Attack *> attacks = player->getAvailableAttacks();
+        cout << "B)ackdoor ["<< countTypes<Backdoor>(attacks)
+             <<"], I)P Spoof ["<< countTypes<IPSpoof>(attacks)
+             <<"], T)rojan ["<< countTypes<TrojanHorse>(attacks)
+             <<"], K)ey ["<< countTypes<DatabaseEncryptionKey>(attacks)
+             <<"], X)SS ["<< countTypes<::XSS>(attacks)
+             <<"], E)mail Spoof ["<< countTypes<EmailSpoof>(attacks)<<"]" << endl;
         char attackCommand;
         cin >> attackCommand;
         attackCommand = toupper(attackCommand);

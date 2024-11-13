@@ -45,6 +45,17 @@ public:
 
     static bool isValidCommand(char command);
 
+    template <typename T>
+    static size_t countTypes(const std::vector<Attack*>& attacks) {
+        size_t count = 0;
+        for (const auto& attack : attacks) {
+            if (dynamic_cast<T*>(attack) != nullptr) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
     ~Controller();
 
     enum DIRECTIONS {
