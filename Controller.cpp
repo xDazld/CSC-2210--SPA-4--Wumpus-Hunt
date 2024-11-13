@@ -188,14 +188,6 @@ bool Controller::isMove(const char command) {
     return false;
 }
 
-bool Controller::isAttack(const char command) {
-    if (command == IP_SPOOF || command == BACKDOOR || command == KEY || command == TROJAN || command
-        == EMAIL_SPOOF || command == XSS) {
-        return true;
-    }
-    return false;
-}
-
 bool Controller::isMenu(const char command) {
     if (command == HELP || command == MAP || command == QUIT || command == ATTACK) {
         return true;
