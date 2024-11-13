@@ -1,0 +1,371 @@
+SPA_4_Wumpus_Hunt.exe
+
+You are in a network with many computers. Each computer has 1 to 4 connections to other computers.
+Each computer has a service you can attack. Some computers are protected by an antivirus or a
+firewall. You can download programs from some computers to attack others. Good luck.
+
+Scanning for defenses and services in adjacent computers...
+Below: 80
+Right: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
++ ? ? . . . @ !
+? @ ! ? ! @ ? ?
+? ? @     . @ .
+. ? .     ! . ?
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Below: 80
+Right: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+E
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [0], X)SS [5], E)mail Spoof [5]
+E
+Target compromised.
+Scanning for defenses and services in adjacent computers...
+Below: 80
+Right: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+You found a Email Spoof attack.
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: 25
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. + ? . . . @ !
+? @ ! ? ! @ ? ?
+? ? @     . @ .
+. ? .     ! . ?
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: 25
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+E
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [0], X)SS [5], E)mail Spoof [5]
+E
+Attack failed.
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: 25
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+E
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [0], X)SS [5], E)mail Spoof [4]
+X
+Target compromised.
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: 25
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+You found a Database Encryption Key attack.
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Below: Unauthorized Activity Detected.
+Left: 25
+Right: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+N
+No connection in that direction
+Scanning for defenses and services in adjacent computers...
+Below: Unauthorized Activity Detected.
+Left: 25
+Right: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. Z + . . . @ !
+? @ ! ? ! @ ? ?
+? ? @     . @ .
+. ? .     ! . ?
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Below: Unauthorized Activity Detected.
+Left: 25
+Right: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Below: 25
+Left: 80
+Right: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Below: Unauthorized Activity Detected.
+Left: Empty Device
+Right: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: Empty Device
+Right: The computer is not responding to scans.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. Z Z . . + @ !
+? @ ! ? ! @ ? ?
+? ? @     . @ .
+. ? .     ! . ?
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: Empty Device
+Right: The computer is not responding to scans.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+E
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [1], X)SS [4], E)mail Spoof [4]
+X
+Attack failed.
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: Empty Device
+Right: The computer is not responding to scans.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+E
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [1], X)SS [3], E)mail Spoof [4]
+E
+Target compromised.
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: Empty Device
+Right: The computer is not responding to scans.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. Z Z . . + Z !
+? @ ! ? ! @ ? ?
+? ? @     . @ .
+. ? .     ! . ?
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Below: The computer is not responding to scans.
+Left: Empty Device
+Right: The computer is not responding to scans.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Below: 25
+Left: Empty Device
+Right: Unauthorized Activity Detected.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+S
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [1], X)SS [3], E)mail Spoof [3]
+E
+Target compromised.
+Scanning for defenses and services in adjacent computers...
+Below: 25
+Left: Empty Device
+Right: Unauthorized Activity Detected.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+S
+You found a Email Spoof attack.
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: The computer is not responding to scans.
+Left: The computer is not responding to scans.
+Right: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. Z Z . . . Z !
+? @ ! ? ! @ + ?
+? ? @     . @ .
+. ? .     ! . ?
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: The computer is not responding to scans.
+Left: The computer is not responding to scans.
+Right: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+Unable to move to that computer, not compromised.
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: The computer is not responding to scans.
+Left: The computer is not responding to scans.
+Right: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+E
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [1], X)SS [3], E)mail Spoof [3]
+E
+Target compromised.
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: The computer is not responding to scans.
+Left: The computer is not responding to scans.
+Right: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+E
+You found a Database Encryption Key attack.
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Above: Unauthorized Activity Detected.
+Below: Empty Device
+Left: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. Z Z . . . Z !
+? @ ! ? ! @ Z +
+? ? @     . @ .
+. ? .     ! . ?
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Above: Unauthorized Activity Detected.
+Below: Empty Device
+Left: 25
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+S
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Above: 25
+Below: 80
+Left: The computer is not responding to scans.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+S
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [2], X)SS [3], E)mail Spoof [2]
+X
+Target compromised.
+Scanning for defenses and services in adjacent computers...
+Above: 25
+Below: 80
+Left: The computer is not responding to scans.
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+S
+You found a XSS attack.
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Above: Empty Device
+Below: Empty Device
+Left: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. Z Z . . . Z !
+? @ ! ? ! @ Z Z
+? ? @     . @ .
+. ? .     ! . +
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Above: Empty Device
+Below: Empty Device
+Left: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+W
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: Unauthorized Activity Detected.
+Left: Unauthorized Activity Detected.
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+W
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [2], X)SS [3], E)mail Spoof [2]
+X
+Attack failed.
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: Unauthorized Activity Detected.
+Left: Unauthorized Activity Detected.
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+W
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [2], X)SS [2], E)mail Spoof [2]
+E
+Target compromised.
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: Unauthorized Activity Detected.
+Left: Unauthorized Activity Detected.
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+M
+
+Network Map:
+. Z Z . . . Z !
+? @ ! ? ! @ Z Z
+? ? @     . @ .
+. ? .     Z + Z
+! ! ? . . # ! .
+! . ? ? ? . @ ?
+
+Scanning for defenses and services in adjacent computers...
+Above: The computer is not responding to scans.
+Below: Unauthorized Activity Detected.
+Left: Unauthorized Activity Detected.
+Right: 80
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+W
+Moved to new computer.
+Scanning for defenses and services in adjacent computers...
+Above: Empty Device
+Below: Unauthorized Activity Detected.
+The computer is not responding to scans.
+Right: Empty Device
+Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:
+A
+N)orth, S)outh, E)ast, W)est
+S
+B)ackdoor [0], I)P Spoof [0], T)rojan [0], K)ey [2], X)SS [2], E)mail Spoof [1]
+K
+You hacked the WumpDB!
