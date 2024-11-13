@@ -50,7 +50,7 @@ bool Player::doMove(const char command) {
             currentRoom->setIcon('+');
             addItem(currentRoom->get_loot());
             std::cout << "Moved to new computer." << std::endl;
-        } else if (newPosition->getIcon()=='!') {
+        } else if (newPosition->getIcon()=='!' || newPosition->getIcon()=='#') {
             bool loseGame = true;
             return loseGame;
         } else {
