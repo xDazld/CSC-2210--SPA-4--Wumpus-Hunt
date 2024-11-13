@@ -22,6 +22,7 @@ private:
     std::vector<Attack *> availableAttacks; // Attacks available to the player
     Computer *currentRoom;
     Network *network;
+    char currentRoomIcon = '.';
 
 public:
     Player(Computer *startComputer, Network *network);

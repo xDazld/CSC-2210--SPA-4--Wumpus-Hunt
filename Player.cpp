@@ -40,7 +40,10 @@ void Player::doMove(const char command) {
         std::cerr << "No connection in that direction" << std::endl;
     } else {
         if (newPosition->getCompromised()) {
+            currentRoom->setIcon(currentRoomIcon);
             currentRoom = newPosition;
+            currentRoomIcon = currentRoom->getIcon();
+            currentRoom->setIcon('+');
             std::cout << "Moved to new computer." << std::endl;
         } else {
             std::cerr << "Unable to move to that computer, not compromised." << std::endl;
