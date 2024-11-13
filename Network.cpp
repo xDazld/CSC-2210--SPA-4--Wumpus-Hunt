@@ -117,6 +117,12 @@ WumpDB::WumpDB(): Computer('#') {
     addDefense(new Firewall());
 }
 
+std::vector<Attack *> Computer::get_loot() {
+    std::vector<Attack *> temp_loot = loot; // Copy the loot vector
+    loot.clear();  // Clear the original loot
+    return temp_loot; // Return the copied vector by value
+}
+
 Network::~Network() {
     for (auto &room: rooms) {
         for (const auto &j: room) {
