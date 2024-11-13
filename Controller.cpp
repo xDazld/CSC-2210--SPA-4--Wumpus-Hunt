@@ -156,7 +156,7 @@ bool Controller::doTurn(const char command) const {
         attackCommand = toupper(attackCommand);
         const bool isWin = player->aimAttack(attackCommand, directionInput);
         if (isWin) {
-            cout << "You hacked th WumpDB!" << endl;
+            cout << "You hacked the WumpDB!" << endl;
         }
         return isWin;
     }
