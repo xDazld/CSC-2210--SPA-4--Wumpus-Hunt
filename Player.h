@@ -40,22 +40,7 @@ public:
     void addItem(std::vector<Attack *> attack);
 
     template <typename T>
-    bool doAttack(Computer &targetComputer) const {
-        Attack *attack = new T();
-        for (const auto availableAttack: availableAttacks) {
-            if (availableAttack->get_name() == attack->get_name()) {
-                // Perform the Backdoor attack action here
-                const bool success = attack->doAttack(targetComputer);
-                delete attack; // Optional: If managing memory dynamically
-                if (success) {
-                    targetComputer.setCompromised(true);
-                    targetComputer.setIcon('Z');
-                }
-                return success;
-            }
-        }
-        return false;
-    }
+    bool doAttack(Computer &targetComputer) const;
 
     ~Player();
 };

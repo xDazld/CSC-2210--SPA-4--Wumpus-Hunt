@@ -39,7 +39,6 @@ void Player::doMove(const char command) {
         newPosition == nullptr) {
         std::cerr << "No connection in that direction" << std::endl;
     } else {
-
         if (newPosition->getCompromised()) {
             currentRoom = newPosition;
             std::cout << "Moved to new computer." << std::endl;
@@ -239,6 +238,24 @@ void Player::scan() const {
 
 void Player::addItem(std::vector<Attack *> attack) {
     availableAttacks.insert(availableAttacks.end(), attack.begin(), attack.end());
+}
+
+template<typename T>
+bool Player::doAttack(Computer &targetComputer) const {
+    Attack *attack = new T();
+    for (const auto availableAttack: availableAttacks) {
+        if (availableAttack->get_name() == attack->get_name()) {
+            // Perform the Backdoor attack action here
+            const bool success = attack->doAttack(targetComputer);
+            delete attack; // Optional: If managing memory dynamically
+            if (success) {
+                targetComputer.setCompromised(true);
+                targetComputer.setIcon('Z');
+            }
+            return success;
+        }
+    }
+    return false;
 }
 
 Player::~Player() {
