@@ -43,6 +43,7 @@ class Backdoor : public Attack {
     Computer *location = nullptr;
 
 public:
+    Backdoor() {name = "Backdoor";}
     bool doAttack(Computer &target) override;
 };
 
@@ -51,6 +52,7 @@ public:
  */
 class IPSpoof : public Attack {
 public:
+    IPSpoof() {name = "IP Spoof";}
     bool doAttack(Computer &target) override;
 };
 
@@ -59,6 +61,7 @@ public:
  */
 class TrojanHorse : public Attack {
 public:
+    TrojanHorse() {name = "Trojan Horse";}
     bool doAttack(Computer &target) override;
 };
 
@@ -67,6 +70,7 @@ public:
  */
 class DatabaseEncryptionKey : public Attack {
 public:
+    DatabaseEncryptionKey() {name = "Database Encryption Key";}
     bool doAttack(Computer &target) override;
 };
 
@@ -75,6 +79,7 @@ public:
  */
 class XSS : public Attack {
 public:
+    XSS() {name = "XSS";}
     bool doAttack(Computer &target) override;
 };
 
@@ -83,6 +88,7 @@ public:
  */
 class EmailSpoof : public Attack {
 public:
+    EmailSpoof() {name = "Email Spoof";}
     bool doAttack(Computer &target) override;
 };
 

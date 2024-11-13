@@ -32,16 +32,16 @@ public:
     }
     void doMove(char command);
 
+    void addItem(std::vector<Attack *> loot);
+
     bool aimAttack(char command, char direction);
 
     bool isAttackAvailable(char attackType);
 
     void scan() const;
 
-    void addItem(std::vector<Attack *> attack);
-
     template <typename T>
-    bool doAttack(Computer &targetComputer) const;
+    bool doAttack(Computer &targetComputer);
 
     std::vector<Attack *> getAvailableAttacks() const { return availableAttacks; }
 

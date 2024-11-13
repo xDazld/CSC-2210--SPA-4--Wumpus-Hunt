@@ -44,12 +44,19 @@ void Player::doMove(const char command) {
             currentRoom = newPosition;
             currentRoomIcon = currentRoom->getIcon();
             currentRoom->setIcon('+');
+            addItem(currentRoom->get_loot());
             std::cout << "Moved to new computer." << std::endl;
         } else {
             std::cerr << "Unable to move to that computer, not compromised." << std::endl;
         }
     }
-    addItem(currentRoom->get_loot());
+}
+
+void Player::addItem(vector<Attack *> loot) {
+    for (const auto* item : loot) {
+        std::cout << "You found a " << item->get_name() << " attack." << std::endl;
+    }
+    availableAttacks.insert(availableAttacks.end(), loot.begin(), loot.end());
 }
 
 bool Player::aimAttack(const char command, const char direction) {
@@ -239,25 +246,29 @@ void Player::scan() const {
     }
 }
 
-void Player::addItem(std::vector<Attack *> attack) {
-    availableAttacks.insert(availableAttacks.end(), attack.begin(), attack.end());
-}
-
 template<typename T>
-bool Player::doAttack(Computer &targetComputer) const {
+bool Player::doAttack(Computer &targetComputer) {
+    // Instantiate the specific attack type (e.g., Backdoor)
     Attack *attack = new T();
-    for (const auto availableAttack: availableAttacks) {
-        if (availableAttack->get_name() == attack->get_name()) {
-            // Perform the Backdoor attack action here
-            const bool success = attack->doAttack(targetComputer);
-            delete attack; // Optional: If managing memory dynamically
+    for (auto it = availableAttacks.begin(); it != availableAttacks.end(); ++it) {
+        if ((*it)->get_name() == attack->get_name()) {
+            // Perform the attack action
+            bool success = attack->doAttack(targetComputer);
+            delete attack; // Clean up dynamically created attack instance
+
             if (success) {
+                // Update the target computer's state
                 targetComputer.setCompromised(true);
                 targetComputer.setIcon('Z');
+
+                // Remove the used attack from availableAttacks
+                delete *it;              // Free memory for the attack object
+                availableAttacks.erase(it); // Remove the pointer from the vector
             }
             return success;
         }
     }
+    delete attack; // Clean up if the attack was not found or not successful
     return false;
 }
 
