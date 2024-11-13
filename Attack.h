@@ -44,6 +44,7 @@ class Backdoor : public Attack {
 
 public:
     Backdoor() {name = "Backdoor";}
+    Computer *getLocation() {return location;}
     bool doAttack(Computer &target) override;
 };
 

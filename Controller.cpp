@@ -102,7 +102,7 @@ void Controller::startGame() {
     while (gameRunning) {
         player->scan();
         cout <<
-                "Action: N)orth, S)outh, E)ast, W)est, A)ttack, B)ackdoor, H)elp, M)ap, Q)uit:"
+                "Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:"
                 << endl;
         cin >> command;
         command = toupper(command);
