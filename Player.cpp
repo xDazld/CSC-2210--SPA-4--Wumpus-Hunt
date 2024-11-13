@@ -194,11 +194,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(NORTH); neighbor != nullptr) {
         std::cout << "Above: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {
@@ -210,11 +212,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(SOUTH); neighbor != nullptr) {
         std::cout << "Below: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {
@@ -226,11 +230,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(WEST); neighbor != nullptr) {
         std::cout << "Left: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {
@@ -242,11 +248,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(EAST); neighbor != nullptr) {
         std::cout << "Right: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {

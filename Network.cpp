@@ -8,14 +8,16 @@
 
 Computer::Computer(const char icon) : icon(icon) {
     // Add services to the computer
-    switch (rand() % 2) {
-        case 0:
-            addService(new HTTPServer());
+    if (icon!='.') {
+        switch (rand() % 2) {
+            case 0:
+                addService(new HTTPServer());
             break;
-        case 1:
-            addService(new EmailServer());
+            case 1:
+                addService(new EmailServer());
             break;
-        default: ;
+            default: ;
+        }
     }
 
     // Add attack to the computer
