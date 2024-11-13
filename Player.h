@@ -27,9 +27,8 @@ private:
 public:
     Player(Computer *startComputer, Network *network);
 
-    void set_current_room(Computer *current_room) {
-        this->currentRoom = current_room;
-    }
+    void set_current_room(Computer *current_room);
+
     bool doMove(char command);
 
     void addItem(std::vector<Attack *> loot);
