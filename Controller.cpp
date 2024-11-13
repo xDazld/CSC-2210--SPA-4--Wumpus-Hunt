@@ -70,8 +70,8 @@ Map Key:
 . - An empty space
 + - The Player (Only One)
 ? - IP Spoof
-? - Backdoor (Only One)
-? - Encryption Key (Only One)
+? - Backdoor
+? - Encryption Key
 ? - XSS
 ? - Email Spoof
 ? - Trojan Horse
@@ -80,8 +80,7 @@ Map Key:
 # - WumpDB (Only One)
 
 Scanning:
-When you are one connection away from a WumpDB or hazard, the game will say:
-* WumpDB: This device has a database administration tool installed.
+When you are one connection away from a  hazard, the game will say:
 * Antivirus: Unauthorized Activity Detected
 * Firewall: A connected device is not responding to scans.
 

@@ -53,7 +53,7 @@ public:
  */
 class Antivirus : public Defense {
 public:
-    Antivirus(): Defense("Antivirus", "The computer deleted the scanning program.") {
+    Antivirus(): Defense("Antivirus", "Unauthorized Activity Detected.") {
     }
 };
 
