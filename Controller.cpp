@@ -101,6 +101,7 @@ void Controller::startGame() {
                 "Action: N)orth, S)outh, E)ast, W)est, A)ttack, B)ackdoor, H)elp, M)ap, Q)uit:"
                 << endl;
         cin >> command;
+        command = toupper(command);
 
         if (isValidCommand(command)) {
             switch (command) {
@@ -133,9 +134,11 @@ bool Controller::doTurn(const char command) const {
         cout << "N)orth, S)outh, E)ast, W)est" << endl;
         char directionInput;
         cin >> directionInput;
+        directionInput = toupper(directionInput);
         cout << "B)ackdoor, I)P Spoof, T)rojan, K)ey, X)SS, E)mail Spoof" << endl;
         char attackCommand;
         cin >> attackCommand;
+        attackCommand = toupper(attackCommand);
         const bool isWin = player->aimAttack(attackCommand, directionInput);
         if (isWin) {
             cout << "You Win!" << endl;
