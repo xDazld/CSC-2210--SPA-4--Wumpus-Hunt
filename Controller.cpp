@@ -5,6 +5,9 @@
 #include "Controller.h"
 #include <iostream>
 #include <map>
+#include <ctime>
+#include <cstdlib>
+#include <vector>
 
 using namespace std;
 
@@ -12,7 +15,7 @@ static constexpr bool DEBUG_MODE = false;
 
 // Constructor to initialize messages
 Controller::Controller()
-    : network(new Network("+?...@..@!.?..?.?..  .?.?..  ?...!..@#...??.!..@")), player() {
+    : network(new Network(createLayout())), player() {
     // Initialize player
     player = new Player(network->getStart(), network);
     // Store the help text in the messages map
@@ -193,6 +196,26 @@ bool Controller::isValidCommand(const char command) {
         return true;
     }
     return false;
+}
+
+string Controller::createLayout() {
+    // Initialize the base string with fixed characters
+    string str = "+..................  ......  ........#..........";
+
+    // Define the characters that can be randomized
+    vector<char> randomChars = {'?', '@', '!', '.', '.', '?'}; // '.' has higher frequency
+
+    // Seed for randomness
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    // Replace non-fixed characters with random choices from randomChars
+    for (size_t i = 0; i < str.size(); ++i) {
+        if (str[i] == '.') {  // Only replace dots
+            str[i] = randomChars[rand() % randomChars.size()];
+        }
+    }
+
+    return str;
 }
 
 Controller::~Controller() {

@@ -24,6 +24,8 @@ private:
     Player *player;
 
 public:
+    string createLayout();
+
     Controller(); // Constructor to initialize messages
     void startGame();
 
