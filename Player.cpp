@@ -34,8 +34,6 @@ void Player::doMove(const char command) {
         newPosition == nullptr) {
         std::cerr << "No connection in that direction" << std::endl;
     } else {
-        currentRoom = newPosition;
-        std::cout << "Moved to new computer." << std::endl;
         if (newPosition->getCompromised()) {
             currentRoom = newPosition;
             std::cout << "Moved to new computer." << std::endl;
