@@ -55,7 +55,7 @@ bool XSS::doAttack(Computer &target) {
 
 bool EmailSpoof::doAttack(Computer &target) {
     for (const Service *service: target.get_services()) {
-        if (service->get_name() == "Mail") {
+        if (service->get_name() == "Email") {
             target.setCompromised(true);
             return true;
         }
