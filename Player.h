@@ -7,6 +7,7 @@
 
 #include <vector>
 
+#include "Attack.h"
 #include "Network.h"
 
 class Attack;
