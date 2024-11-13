@@ -54,24 +54,25 @@ Each turn you can attack an adjacent computer to allow lateral movement to that 
 the lateral movement.
 You can move across one network connection at a time. If you successfully move to the computer with
 the WumpDB, you win. You will automatically do some scanning when you connect to a computer.
-You attack by telling the game which direction on the network you want to attack. If you manage to
-attack your local host, you will lose. However, if you connect to a computer will a firewall, all
-your spoof attacks will be removed.
+You attack by telling the game which direction on the network you want to attack.
 Connecting to a computer with antivirus installed will cause your attack to be found out and you
 will be removed from the network.
-When exploring network you can find three different tools to help you. An encryption key will allow
-you to decode the encryption on the WumpDB and gain access to the database without getting
-blacklisted, allowing you to win the game. You can also find source code for spoofing attacks in
-the network, using a spoofing attack will allow you to remove firewalls and antiviruses from an
-adjacent computer. Finally, you can find backdoors that will let you return back to the location
-you found it when used.
+When exploring network you can find three different tools to help you.
+ * A Backdoor will save a location in any Computer (except for the WumpDB) and you can use it again
+ to return to your previous location
+ * An IP Spoof will grant access to a computer with a firewall
+ * A Trojan Horse attack will disable the antivirus on a computer
+ * An encryption key will allow you to decode the encryption on the WumpDB and gain access to the
+ database without getting blacklisted, allowing you to win the game.
+ * A XSS attack will grant access to a computer hosting a HTTP server (port 80)
+ * An Email spoof will grant access to a computer hosting an email server (port 25)
 
 Map Key:
-. - An empty space
+. - An undefended device
 + - The Player (Only One)
 ? - IP Spoof
-? - Backdoor (Only One)
-? - Encryption Key (Only One)
+? - Backdoor
+? - Encryption Key
 ? - XSS
 ? - Email Spoof
 ? - Trojan Horse
@@ -80,8 +81,7 @@ Map Key:
 # - WumpDB (Only One)
 
 Scanning:
-When you are one connection away from a WumpDB or hazard, the game will say:
-* WumpDB: This device has a database administration tool installed.
+When you are one connection away from a  hazard, the game will say:
 * Antivirus: Unauthorized Activity Detected
 * Firewall: A connected device is not responding to scans.
 
@@ -102,7 +102,7 @@ void Controller::startGame() {
     while (gameRunning) {
         player->scan();
         cout <<
-                "Action: N)orth, S)outh, E)ast, W)est, A)ttack, B)ackdoor, H)elp, M)ap, Q)uit:"
+                "Action: N)orth, S)outh, E)ast, W)est, A)ttack, H)elp, M)ap, Q)uit:"
                 << endl;
         cin >> command;
         command = toupper(command);
@@ -132,8 +132,13 @@ void Controller::startGame() {
 }
 
 bool Controller::doTurn(const char command) const {
+    bool isLoss = false;
     if (isMove(command)) {
-        player->doMove(command);
+        isLoss = player->doMove(command);
+        if (isLoss) {
+            cout << "You were removed from the network by an antivirus!" << endl;
+        }
+        return isLoss;
     } else if (command == ATTACK) {
         cout << "N)orth, S)outh, E)ast, W)est" << endl;
         char directionInput;
@@ -151,7 +156,7 @@ bool Controller::doTurn(const char command) const {
         attackCommand = toupper(attackCommand);
         const bool isWin = player->aimAttack(attackCommand, directionInput);
         if (isWin) {
-            cout << "You Win!" << endl;
+            cout << "You hacked the WumpDB!" << endl;
         }
         return isWin;
     }
@@ -178,14 +183,6 @@ void Controller::showActions() {
 
 bool Controller::isMove(const char command) {
     if (command == NORTH || command == SOUTH || command == EAST || command == WEST) {
-        return true;
-    }
-    return false;
-}
-
-bool Controller::isAttack(const char command) {
-    if (command == IP_SPOOF || command == BACKDOOR || command == KEY || command == TROJAN || command
-        == EMAIL_SPOOF || command == XSS) {
         return true;
     }
     return false;

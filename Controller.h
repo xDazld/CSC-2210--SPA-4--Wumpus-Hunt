@@ -39,8 +39,6 @@ public:
 
     static bool isMove(char command);
 
-    static bool isAttack(char command);
-
     static bool isMenu(char command);
 
     static bool isValidCommand(char command);

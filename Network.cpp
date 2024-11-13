@@ -8,14 +8,16 @@
 
 Computer::Computer(const char icon) : icon(icon) {
     // Add services to the computer
-    switch (rand() % 2) {
-        case 0:
-            addService(new HTTPServer());
+    if (icon!='.') {
+        switch (rand() % 2) {
+            case 0:
+                addService(new HTTPServer());
             break;
-        case 1:
-            addService(new EmailServer());
+            case 1:
+                addService(new EmailServer());
             break;
-        default: ;
+            default: ;
+        }
     }
 
     // Add attack to the computer
@@ -81,6 +83,9 @@ Network::Network(std::string layout) : layout(std::move(layout)) {
                 if (row < 5) {
                     room->setNeighbor(SOUTH, rooms[row + 1][col]);
                 }
+                if (room->getIcon()=='.') {
+                    room->setCompromised(true);
+                }
             }
         }
     }
@@ -112,6 +117,12 @@ WumpDB::WumpDB(): Computer('#') {
     addService(new SQLServer());
     addDefense(new Antivirus());
     addDefense(new Firewall());
+}
+
+std::vector<Attack *> Computer::get_loot() {
+    std::vector<Attack *> temp_loot = loot; // Copy the loot vector
+    loot.clear();  // Clear the original loot
+    return temp_loot; // Return the copied vector by value
 }
 
 Network::~Network() {

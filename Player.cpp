@@ -15,9 +15,13 @@ Player::Player(Computer *startComputer, Network *network)
     for (int i = 0; i < 5; i++) {
         availableAttacks.push_back(new XSS());
     }
+    availableAttacks.push_back(new Backdoor());
+    for (Attack* attack : availableAttacks) {
+        attack->download(this);
+    }
 }
 
-void Player::doMove(const char command) {
+bool Player::doMove(const char command) {
     Direction move_direction = {};
     switch (command) {
         case 'N':
@@ -39,24 +43,31 @@ void Player::doMove(const char command) {
         newPosition == nullptr) {
         std::cerr << "No connection in that direction" << std::endl;
     } else {
-        if (newPosition->getCompromised()) {
+        if (newPosition->getCompromised() && newPosition->getIcon()!='!') {
             currentRoom->setIcon(currentRoomIcon);
             currentRoom = newPosition;
             currentRoomIcon = currentRoom->getIcon();
             currentRoom->setIcon('+');
             addItem(currentRoom->get_loot());
             std::cout << "Moved to new computer." << std::endl;
+        } else if (newPosition->getIcon()=='!' || newPosition->getIcon()=='#') {
+            bool loseGame = true;
+            return loseGame;
         } else {
             std::cerr << "Unable to move to that computer, not compromised." << std::endl;
         }
     }
+    return false;
 }
 
 void Player::addItem(vector<Attack *> loot) {
     for (const auto* item : loot) {
         std::cout << "You found a " << item->get_name() << " attack." << std::endl;
     }
-    availableAttacks.insert(availableAttacks.end(), loot.begin(), loot.end());
+    for (Attack* attack : loot) {
+        attack->download(this);
+        availableAttacks.push_back(attack);
+    }
 }
 
 bool Player::aimAttack(const char command, const char direction) {
@@ -128,7 +139,7 @@ bool Player::aimAttack(const char command, const char direction) {
 bool Player::isAttackAvailable(const char attackType) {
     Controller::ATTACKS type = {};
     switch (attackType) {
-        case 'A':
+        case 'I':
             type = Controller::IP_SPOOF;
             break;
         case 'B':
@@ -183,11 +194,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(NORTH); neighbor != nullptr) {
         std::cout << "Above: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {
@@ -199,11 +212,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(SOUTH); neighbor != nullptr) {
         std::cout << "Below: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {
@@ -215,11 +230,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(WEST); neighbor != nullptr) {
         std::cout << "Left: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {
@@ -231,11 +248,13 @@ void Player::scan() const {
     if (Computer *neighbor = currentRoom->getNeighbor(EAST); neighbor != nullptr) {
         std::cout << "Right: ";
         if (neighbor->get_defenses().empty()) {
-            for (const auto &defense: neighbor->get_defenses()) {
-                std::cout << defense->get_name() << ' ';
+            if (neighbor->get_services().empty()) {
+                std::cout << "Empty Device";
             }
-            for (const auto &service: neighbor->get_services()) {
-                std::cout << service->get_port() << ' ';
+            else {
+                for (const auto &service: neighbor->get_services()) {
+                    std::cout << service->get_port() << ' ';
+                }
             }
             std::cout << std::endl;
         } else {
@@ -248,28 +267,39 @@ void Player::scan() const {
 
 template<typename T>
 bool Player::doAttack(Computer &targetComputer) {
-    // Instantiate the specific attack type (e.g., Backdoor)
-    Attack *attack = new T();
     for (auto it = availableAttacks.begin(); it != availableAttacks.end(); ++it) {
-        if ((*it)->get_name() == attack->get_name()) {
-            // Perform the attack action
-            bool success = attack->doAttack(targetComputer);
-            delete attack; // Clean up dynamically created attack instance
-
+        // Check if the attack is of type T
+        if (T* attack = dynamic_cast<T*>(*it)) {
+            bool success = false;
+            if (auto backdoor = dynamic_cast<Backdoor*>(*it)) {
+                if (backdoor->getLocation() == nullptr) {
+                    success = backdoor->doAttack(targetComputer);
+                    if (success) {
+                        targetComputer.setCompromised(true);
+                        targetComputer.setIcon('Z');
+                    }
+                    return success;
+                }
+                success = backdoor-> doAttack(targetComputer);
+                availableAttacks.erase(it);
+                return success;
+            }
+            success = attack->doAttack(targetComputer);
+            availableAttacks.erase(it);
             if (success) {
-                // Update the target computer's state
                 targetComputer.setCompromised(true);
                 targetComputer.setIcon('Z');
-
-                // Remove the used attack from availableAttacks
-                delete *it;              // Free memory for the attack object
-                availableAttacks.erase(it); // Remove the pointer from the vector
             }
             return success;
         }
     }
-    delete attack; // Clean up if the attack was not found or not successful
-    return false;
+}
+
+void Player::set_current_room(Computer *current_room) {
+    currentRoom->setIcon(currentRoomIcon);
+    this->currentRoom = current_room;
+    currentRoomIcon = currentRoom->getIcon();
+    currentRoom->setIcon('+');
 }
 
 Player::~Player() {
