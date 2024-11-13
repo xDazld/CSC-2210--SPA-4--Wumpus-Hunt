@@ -65,6 +65,7 @@ Network::Network(std::string layout) : layout(std::move(layout)) {
             ++index;
         }
     }
+    rooms[0][0]->setCompromised(true);
     for (int row = 0; row < 6; row++) {
         for (int col = 0; col < 8; col++) {
             if (Computer *room = rooms[row][col]; room != nullptr) {
