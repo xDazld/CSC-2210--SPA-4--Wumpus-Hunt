@@ -26,6 +26,14 @@ public:
     virtual bool doAttack(Computer &target) = 0;
 
     virtual void download(Player *player);
+
+    friend bool operator==(const Attack &lhs, const Attack &rhs) {
+        return lhs.name == rhs.name;
+    }
+
+    [[nodiscard]] std::string get_name() const {
+        return name;
+    }
 };
 
 /**
