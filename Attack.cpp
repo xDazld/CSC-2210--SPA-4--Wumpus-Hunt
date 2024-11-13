@@ -33,10 +33,19 @@ bool IPSpoof::doAttack(Computer &target) {
 }
 
 bool TrojanHorse::doAttack(Computer &target) {
-    Defense *dummy_antivirus = new Firewall();
-    const size_t removed_count = target.get_defenses().remove(dummy_antivirus);
-    delete dummy_antivirus;
-    return removed_count != 0;
+    auto &defenses = target.get_defenses();  // Get reference to defenses vector
+
+    // Find the firewall defense in the vector
+    auto it = std::find_if(defenses.begin(), defenses.end(),
+        [](Defense* defense) { return dynamic_cast<Antivirus*>(defense) != nullptr; });
+
+    if (it != defenses.end()) {
+        // Found a firewall defense, now erase it
+        delete *it;  // Free memory of the removed defense
+        defenses.erase(it);  // Remove the pointer from the vector
+        return true;  // Successfully removed
+    }
+    return false;  // No firewall found
 }
 
 
