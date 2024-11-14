@@ -15,7 +15,6 @@ Player::Player(Computer *startComputer, Network *network)
     for (int i = 0; i < 5; i++) {
         availableAttacks.push_back(new XSS());
     }
-    availableAttacks.push_back(new Backdoor());
     for (Attack* attack : availableAttacks) {
         attack->download(this);
     }
