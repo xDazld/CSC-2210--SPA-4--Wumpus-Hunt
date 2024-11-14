@@ -101,8 +101,8 @@ It also takes some minor inspiration from [Hacknet](https://en.wikipedia.org/wik
 
 ## Debug Mode
 
-Debug mode can be enabled by setting the `DEBUG_MODE` constant expression boolean in `Controller.
-cpp` to `true`.
+Debug mode can be enabled by setting the `DEBUG_MODE` constant expression boolean in 
+`Controller.cpp` to `true`.
 
 ## Versions of Software Used
 
